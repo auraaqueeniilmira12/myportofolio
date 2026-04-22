@@ -1,0 +1,435 @@
+/* ABOUT SECTION */
+.about {
+    padding: 80px 5%;
+    position: relative;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ABOUT IMAGE */
+.about-left {
+    display: flex;
+    justify-content: center;
+}
+
+.about-image {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    isolation: isolate;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* Orbit ring 1 - luar */
+.about-image .orbit-ring-1 {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border-radius: 50%;
+    border: 2px dashed rgba(192, 132, 252, 0.5);
+    animation: orbitSpin 12s linear infinite;
+    z-index: 5;
+}
+
+/* Orbit ring 2 - dalam dengan arah berlawanan */
+.about-image .orbit-ring-2 {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    animation: orbitSpinReverse 8s linear infinite;
+    z-index: 5;
+}
+
+/* Planet kecil yang berjalan di orbit 1 */
+.about-image .planet-1 {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #f0abfc, #c084fc);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px rgba(192, 132, 252, 0.8);
+    animation: orbitPlanet1 12s linear infinite;
+    z-index: 6;
+}
+
+/* Planet kecil yang berjalan di orbit 2 */
+.about-image .planet-2 {
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #d8b4fe, #a855f7);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+    animation: orbitPlanet2 8s linear infinite reverse;
+    z-index: 6;
+}
+
+/* Nebula glow di belakang */
+.about-image .nebula {
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    right: -40px;
+    bottom: -40px;
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.15), transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    animation: nebulaPulse 4s ease-in-out infinite;
+    z-index: 0;
+}
+
+/* Bintang-bintang bertebaran */
+.about-image .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 7;
+}
+
+.star-1 { width: 2px; height: 2px; top: 10%; left: 85%; animation: twinkle 2s ease infinite 0s; }
+.star-2 { width: 1.5px; height: 1.5px; top: 20%; left: 10%; animation: twinkle 2.5s ease infinite 0.5s; }
+.star-3 { width: 2px; height: 2px; top: 70%; left: 90%; animation: twinkle 1.8s ease infinite 1s; }
+.star-4 { width: 1px; height: 1px; top: 80%; left: 5%; animation: twinkle 3s ease infinite 0.3s; }
+.star-5 { width: 1.5px; height: 1.5px; top: 40%; left: 95%; animation: twinkle 2.2s ease infinite 0.8s; }
+.star-6 { width: 2px; height: 2px; top: 60%; left: -5%; animation: twinkle 1.5s ease infinite 1.2s; }
+.star-7 { width: 1px; height: 1px; top: 15%; left: -8%; animation: twinkle 2.8s ease infinite 0.2s; }
+.star-8 { width: 1.5px; height: 1.5px; top: 85%; left: 15%; animation: twinkle 2.1s ease infinite 0.7s; }
+
+/* Animations */
+@keyframes orbitSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes orbitSpinReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes orbitPlanet1 {
+    from { transform: translateX(-50%) rotate(0deg) translateX(calc(50% + 20px)) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(360deg) translateX(calc(50% + 20px)) rotate(-360deg); }
+}
+
+@keyframes orbitPlanet2 {
+    from { transform: translateY(-50%) rotate(0deg) translateY(calc(50% + 10px)) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg) translateY(calc(50% + 10px)) rotate(-360deg); }
+}
+
+@keyframes nebulaPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.about-image:hover img {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.15), 0 25px 50px -18px rgba(0, 0, 0, 0.5);
+}
+
+.about-image:hover .orbit-ring-1 {
+    animation-duration: 8s;
+    border-color: rgba(192, 132, 252, 0.8);
+}
+
+.about-image:hover .orbit-ring-2 {
+    animation-duration: 5s;
+}
+
+/* ABOUT RIGHT */
+.about-right {
+    width: 100%;
+}
+
+.about-subtitle {
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: #c084fc;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.about-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.about-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #c084fc, #a855f7);
+    border-radius: 3px;
+}
+
+.about-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #cbd5e1;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.about-desc strong {
+    color: #d8b4fe;
+    font-weight: 600;
+}
+
+/* INFO GRID - PERSIS SEPERTI FOTO */
+.about-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 30px;
+    margin: 25px 0 30px;
+}
+
+.info-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.info-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #a855f7;
+    min-width: 85px;
+}
+
+.info-value {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #e2e8f0;
+}
+
+/* BUTTONS */
+.about-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.btn-readmore {
+    background: transparent;
+    border: 2px solid #c084fc;
+    padding: 10px 28px;
+    border-radius: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #c084fc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.btn-readmore:hover {
+    background: #c084fc;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(192, 132, 252, 0.3);
+}
+
+.btn-download {
+    background: linear-gradient(135deg, #c084fc, #a855f7);
+    border: none;
+    padding: 10px 28px;
+    border-radius: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+}
+
+.btn-download:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+    background: linear-gradient(135deg, #d8b4fe, #c084fc);
+}
+
+/* ========== MODAL POPUP ========== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #0a0515, #1a0a2e);
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 0 0 50px rgba(139, 92, 246, 0.2);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.modal-header h2 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #c084fc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-body h3 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.modal-body h4 {
+    color: #c084fc;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.modal-body p {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 968px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .about-left {
+        flex: 1;
+    }
+    
+    .about-right {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .about-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    .btn-readmore, .btn-download {
+        padding: 10px 24px;
+        font-size: 0.8rem;
+    }
+    
+    .about-image {
+        max-width: 280px;
+    }
+}
