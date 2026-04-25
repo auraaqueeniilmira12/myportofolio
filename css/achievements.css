@@ -1,0 +1,852 @@
+/* ================= ACHIEVEMENTS SECTION ================= */
+ 
+.achievements {
+    padding: 80px 5%;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg,
+        #07030f 0%,
+        #0b0419 35%,
+        #0e0620 65%,
+        #07030f 100%);
+    isolation: isolate;
+}
+
+/* Garis pembatas atas (antara Projects dan Achievements) */
+.achievements::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c084fc, #a855f7, #c084fc, transparent);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ===== CONTAINER ===== */
+.achievements-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+ 
+/* ===== HEADER ===== */
+.achievements-header {
+    text-align: center;
+    margin-bottom: 55px;
+}
+ 
+.achievements-subtitle {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #c084fc;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+ 
+.achievements-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+ 
+.achievements-title span {
+    background: linear-gradient(135deg, #f0abfc, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+ 
+.achievements-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: #94a3b8;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+ 
+/* ===== ACHIEVEMENTS GRID (5 CARDS) ===== */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 45px;
+}
+ 
+/* ===== ACH CARD ===== */
+.ach-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(139,92,246,0.06));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    position: relative;
+}
+ 
+.ach-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #c084fc, transparent);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+ 
+.ach-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(192, 132, 252, 0.5);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(139, 92, 246, 0.15);
+}
+ 
+.ach-card:hover::before {
+    opacity: 1;
+}
+ 
+/* Card Image */
+.ach-card-img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+ 
+.ach-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+}
+ 
+.ach-card:hover .ach-card-img img {
+    transform: scale(1.07);
+}
+ 
+.ach-card-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(13, 7, 24, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+ 
+.ach-card:hover .ach-card-overlay {
+    opacity: 1;
+}
+ 
+.ach-view-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(192, 132, 252, 0.3);
+    border: 1px solid rgba(192, 132, 252, 0.6);
+    padding: 8px 18px;
+    border-radius: 30px;
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.3s ease;
+}
+ 
+.ach-view-btn:hover {
+    background: rgba(192, 132, 252, 0.5);
+}
+ 
+/* Card Info */
+.ach-card-info {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+ 
+.ach-date {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    color: #a855f7;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+ 
+.ach-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.3;
+    margin: 0;
+}
+ 
+.ach-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+ 
+.ach-issuer {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    color: #c084fc;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+}
+ 
+/* Google Drive Button di Card */
+.ach-drive-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #c084fc;
+    background: rgba(139, 92, 246, 0.12);
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    width: fit-content;
+    margin-top: 6px;
+}
+ 
+.ach-drive-btn:hover {
+    background: rgba(192, 132, 252, 0.25);
+    color: #ffffff;
+    transform: translateX(3px);
+}
+ 
+/* ===== VIEW ALL BUTTON ===== */
+.achievements-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+ 
+.achievements-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: 2px solid rgba(192, 132, 252, 0.5);
+    color: #c084fc;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 12px 32px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+ 
+.achievements-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(192, 132, 252, 0.1), transparent);
+    transition: left 0.4s ease;
+}
+ 
+.achievements-more-btn:hover::before {
+    left: 100%;
+}
+ 
+.achievements-more-btn:hover {
+    background: rgba(192, 132, 252, 0.1);
+    border-color: #c084fc;
+    box-shadow: 0 0 25px rgba(192, 132, 252, 0.25);
+    transform: translateY(-2px);
+}
+ 
+.ach-count-badge {
+    background: linear-gradient(135deg, #c084fc, #a855f7);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+ 
+/* ================= CERT MODAL OVERLAY ================= */
+ 
+.cert-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(14px);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+ 
+.cert-modal-overlay.active {
+    display: flex;
+    animation: certModalFadeIn 0.3s ease;
+}
+ 
+@keyframes certModalFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+ 
+/* Modal Box */
+.cert-modal-box {
+    background: linear-gradient(145deg, #0d0520, #150830, #0a0418);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    border-radius: 28px;
+    width: 100%;
+    max-width: 950px;
+    max-height: 85vh;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(192, 132, 252, 0.1),
+        0 40px 80px rgba(0, 0, 0, 0.6);
+    animation: certModalSlideUp 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    display: flex;
+    flex-direction: column;
+}
+ 
+@keyframes certModalSlideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+ 
+/* Modal Header */
+.cert-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 28px 18px;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    flex-shrink: 0;
+}
+ 
+.cert-modal-header h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 4px;
+}
+ 
+.cert-modal-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
+    color: #a855f7;
+    letter-spacing: 0.5px;
+}
+ 
+.cert-modal-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    color: #c084fc;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+ 
+.cert-modal-close:hover {
+    background: rgba(192, 132, 252, 0.3);
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+ 
+/* ===== SCROLL TRACK (horizontal) ===== */
+.cert-scroll-track {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 0;
+    padding: 28px 28px;
+    flex: 1;
+    scrollbar-width: none;
+}
+ 
+.cert-scroll-track::-webkit-scrollbar {
+    display: none;
+}
+ 
+/* ===== CERT SLIDE (tiap sertifikat full-width) ===== */
+.cert-slide {
+    min-width: calc(100% - 0px);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: flex-start;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+ 
+.cert-slide-img {
+    flex-shrink: 0;
+    width: 50%;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+ 
+.cert-slide-img:hover {
+    transform: scale(1.01);
+}
+ 
+.cert-slide-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 16 / 11;
+}
+ 
+.cert-slide-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    justify-content: center;
+    padding: 8px 0;
+}
+ 
+.cert-slide-date {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    color: #a855f7;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+ 
+.cert-slide-info h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    margin: 0;
+}
+ 
+.cert-slide-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.92rem;
+    color: #b0b8c8;
+    line-height: 1.65;
+    margin: 0;
+}
+ 
+.cert-slide-issuer {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.86rem;
+    color: #c084fc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+ 
+.cert-drive-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #c084fc;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    padding: 10px 20px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    width: fit-content;
+    margin-top: 6px;
+}
+ 
+.cert-drive-btn:hover {
+    background: rgba(192, 132, 252, 0.3);
+    color: #ffffff;
+    transform: translateX(5px);
+    border-color: #c084fc;
+}
+ 
+/* ===== SCROLL CONTROLS ===== */
+.cert-scroll-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 16px 28px 24px;
+    border-top: 1px solid rgba(139, 92, 246, 0.15);
+    flex-shrink: 0;
+}
+ 
+.cert-scroll-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    color: #c084fc;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+ 
+.cert-scroll-btn:hover {
+    background: rgba(192, 132, 252, 0.3);
+    color: #ffffff;
+    border-color: #c084fc;
+    transform: scale(1.08);
+}
+ 
+/* ===== DOTS ===== */
+.cert-scroll-dots {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 600px;
+}
+ 
+.cert-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.3);
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+ 
+.cert-dot.active {
+    background: #c084fc;
+    border-color: #c084fc;
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(192, 132, 252, 0.7);
+}
+ 
+.cert-dot:hover:not(.active) {
+    background: rgba(192, 132, 252, 0.5);
+}
+
+/* ================= ACHIEVEMENTS - ABSTRACT BACKGROUND ================= */
+
+.achievements-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* ===== 1. FLOATING SOFT CIRCLES (PALING KELIATAN) ===== */
+.ach-soft-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(192, 132, 252, 1), rgba(168, 85, 247, 0.8), rgba(139, 92, 246, 0.5));
+    filter: blur(2px);
+    animation: softCircleFloat 8s ease-in-out infinite;
+}
+
+.c1 {
+    width: 65px;
+    height: 65px;
+    top: 15%;
+    left: 12%;
+    animation-delay: 0s;
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(192, 132, 252, 0.9);
+}
+
+.c2 {
+    width: 50px;
+    height: 50px;
+    bottom: 25%;
+    right: 10%;
+    animation-delay: 1.5s;
+    background: radial-gradient(circle, rgba(168, 85, 247, 1), rgba(139, 92, 246, 0.8), rgba(192, 132, 252, 0.5));
+    opacity: 1;
+    box-shadow: 0 0 35px rgba(168, 85, 247, 0.8);
+}
+
+.c3 {
+    width: 55px;
+    height: 55px;
+    top: 50%;
+    left: 85%;
+    animation-delay: 3s;
+    background: radial-gradient(circle, rgba(139, 92, 246, 1), rgba(192, 132, 252, 0.7), rgba(168, 85, 247, 0.5));
+    opacity: 1;
+    box-shadow: 0 0 35px rgba(139, 92, 246, 0.8);
+}
+
+.c4 {
+    width: 45px;
+    height: 45px;
+    top: 75%;
+    left: 25%;
+    animation-delay: 4.5s;
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.9), rgba(168, 85, 247, 0.7), transparent);
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(192, 132, 252, 0.7);
+}
+
+.c5 {
+    width: 40px;
+    height: 40px;
+    top: 30%;
+    right: 25%;
+    animation-delay: 6s;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.9), rgba(139, 92, 246, 0.7), transparent);
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.7);
+}
+
+.c6 {
+    width: 35px;
+    height: 35px;
+    top: 60%;
+    left: 5%;
+    animation-delay: 7.5s;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.9), rgba(192, 132, 252, 0.6), transparent);
+    opacity: 1;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.7);
+}
+
+@keyframes softCircleFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translate(12px, -10px) scale(1.12);
+        opacity: 1;
+    }
+}
+
+/* ===== 2. DIAGONAL STRIPS (PALING KELIATAN) ===== */
+.ach-strip {
+    position: absolute;
+    background: linear-gradient(45deg, 
+        transparent, 
+        rgba(192, 132, 252, 0.7), 
+        rgba(168, 85, 247, 0.6), 
+        rgba(192, 132, 252, 0.5), 
+        transparent);
+    transform: rotate(45deg);
+    animation: stripMove 7s linear infinite;
+}
+
+.s1 {
+    width: 200%;
+    height: 50px;
+    top: 10%;
+    left: -50%;
+    animation-delay: 0s;
+}
+
+.s2 {
+    width: 200%;
+    height: 40px;
+    top: 55%;
+    left: -50%;
+    animation-delay: 3.5s;
+    animation-duration: 9s;
+    background: linear-gradient(-45deg, 
+        transparent, 
+        rgba(168, 85, 247, 0.7), 
+        rgba(192, 132, 252, 0.55), 
+        rgba(168, 85, 247, 0.4), 
+        transparent);
+}
+
+@keyframes stripMove {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* ===== 3. TWINKLING STARS (PALING KELIATAN) ===== */
+.ach-star {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: starTwinkle 1.8s ease-in-out infinite;
+    box-shadow: 0 0 25px rgba(192, 132, 252, 1);
+}
+
+.star1 { top: 5%; left: 5%; animation-delay: 0s; width: 6px; height: 6px; background: #ffffff; }
+.star2 { top: 15%; left: 45%; animation-delay: 0.2s; width: 5px; height: 5px; background: #f0abfc; }
+.star3 { top: 30%; left: 3%; animation-delay: 0.4s; width: 5.5px; height: 5.5px; background: #ffffff; }
+.star4 { top: 45%; left: 30%; animation-delay: 0.6s; width: 7px; height: 7px; background: #c084fc; }
+.star5 { top: 60%; left: 55%; animation-delay: 0.8s; width: 5px; height: 5px; background: #ffffff; }
+.star6 { top: 12%; left: 65%; animation-delay: 1s; width: 5.5px; height: 5.5px; background: #a855f7; }
+.star7 { top: 38%; left: 58%; animation-delay: 1.2s; width: 4.5px; height: 4.5px; background: #ffffff; }
+.star8 { top: 52%; left: 12%; animation-delay: 1.4s; width: 5px; height: 5px; background: #c084fc; }
+.star9 { top: 25%; left: 25%; animation-delay: 1.6s; width: 4px; height: 4px; background: #ffffff; }
+.star10 { top: 68%; left: 28%; animation-delay: 1.8s; width: 5.5px; height: 5.5px; background: #f0abfc; }
+.star11 { top: 8%; left: 52%; animation-delay: 2s; width: 4.5px; height: 4.5px; background: #ffffff; }
+.star12 { top: 50%; left: 48%; animation-delay: 2.2s; width: 5px; height: 5px; background: #c084fc; }
+.star13 { top: 75%; left: 8%; animation-delay: 2.4s; width: 6px; height: 6px; background: #ffffff; }
+.star14 { top: 85%; left: 50%; animation-delay: 2.6s; width: 4.5px; height: 4.5px; background: #a855f7; }
+.star15 { top: 42%; left: 82%; animation-delay: 2.8s; width: 5px; height: 5px; background: #ffffff; }
+.star16 { top: 20%; left: 80%; animation-delay: 3s; width: 4px; height: 4px; background: #f0abfc; }
+.star17 { top: 65%; left: 70%; animation-delay: 3.2s; width: 5.5px; height: 5.5px; background: #ffffff; }
+.star18 { top: 80%; left: 80%; animation-delay: 3.4s; width: 4.5px; height: 4.5px; background: #c084fc; }
+
+@keyframes starTwinkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(2);
+        box-shadow: 0 0 30px rgba(192, 132, 252, 1);
+    }
+}
+
+/* ================= ACHIEVEMENTS GRID RESPONSIVE ================= */
+
+/* Desktop Default - 5 kolom */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-bottom: 45px;
+}
+
+/* Tablet (max-width: 1024px) - 3 kolom */
+@media (max-width: 1024px) {
+    .achievements-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablet (max-width: 768px) - HORIZONTAL SCROLL (geser ke samping) */
+@media (max-width: 768px) {
+    .achievements-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        gap: 20px;
+        padding: 10px 10px 20px 10px;
+        margin-bottom: 45px;
+        cursor: grab;
+        scrollbar-width: thin;
+        scrollbar-color: #c084fc rgba(139, 92, 246, 0.2);
+    }
+    
+    .achievements-grid:active {
+        cursor: grabbing;
+    }
+    
+    /* Custom scrollbar */
+    .achievements-grid::-webkit-scrollbar {
+        height: 5px;
+    }
+    
+    .achievements-grid::-webkit-scrollbar-track {
+        background: rgba(139, 92, 246, 0.1);
+        border-radius: 10px;
+    }
+    
+    .achievements-grid::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, #8b5cf6, #c084fc);
+        border-radius: 10px;
+    }
+    
+    /* Card dalam horizontal scroll */
+    .achievements-grid .ach-card {
+        flex: 0 0 280px;
+        scroll-snap-align: start;
+        min-width: 260px;
+    }
+    
+    /* SEMUA card tetap tampil, tidak ada yang dihide */
+    .achievements-grid .ach-card {
+        display: block !important;
+    }
+}
+
+/* Mobile small (max-width: 480px) */
+@media (max-width: 480px) {
+    .achievements-grid .ach-card {
+        flex: 0 0 260px;
+        min-width: 240px;
+    }
+    
+    .achievements-more-btn {
+        font-size: 0.8rem;
+        padding: 10px 20px;
+    }
+}

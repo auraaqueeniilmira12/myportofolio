@@ -1,16 +1,30 @@
-/* ================= SKILLS.CSS ================= */
-
-/* SKILLS SECTION */
 .skills {
     min-height: 100vh;
     padding: 100px 5%;
     position: relative;
     z-index: 2;
+    background: linear-gradient(180deg, #0a0515 0%, #1a0a2e 50%, #0a0515 100%);
+    overflow-x: hidden;
+}
+
+/* Garis pembatas atas (antara Hero dan Skills) */
+.skills::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c084fc, #a855f7, #c084fc, transparent);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .skills-container {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 10;
 }
 
 /* ========== HEADER ========== */
@@ -85,7 +99,7 @@
     display: inline-block;
 }
 
-/* ========== OVERALL SKILL (GRAFIK KESELURUHAN) ========== */
+/* ========== OVERALL SKILL ========== */
 .overall-skill {
     background: rgba(139, 92, 246, 0.1);
     border-radius: 16px;
@@ -146,6 +160,11 @@
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
     border-radius: 20px;
     animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-40px); }
+    100% { transform: translateX(40px); }
 }
 
 /* ========== SKILL DETAILS ========== */
@@ -212,8 +231,7 @@
     transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ========== TOOLS SECTION - HORIZONTAL SCROLL ========== */
-
+/* ========== TOOLS SECTION ========== */
 .tools-section {
     position: relative;
     overflow: hidden;
@@ -242,7 +260,6 @@
     border-radius: 3px;
 }
 
-/* Grid berubah menjadi flex horizontal yang bisa di-scroll */
 .tools-grid {
     display: flex;
     flex-direction: row;
@@ -253,7 +270,6 @@
     padding: 15px 10px;
     cursor: grab;
     scroll-snap-type: x mandatory;
-    /* Sembunyikan scrollbar default tapi tetap bisa scroll */
     scrollbar-width: thin;
     scrollbar-color: #c084fc rgba(139, 92, 246, 0.2);
 }
@@ -262,7 +278,6 @@
     cursor: grabbing;
 }
 
-/* Custom scrollbar biar keren */
 .tools-grid::-webkit-scrollbar {
     height: 6px;
 }
@@ -281,7 +296,6 @@
     background: linear-gradient(90deg, #c084fc, #e9d5ff);
 }
 
-/* Tool Card - tetap sama tapi tambahan scroll snap */
 .tool-card {
     min-width: 170px;
     flex-shrink: 0;
@@ -298,7 +312,6 @@
     overflow: hidden;
 }
 
-/* Hover Effect */
 .tool-card:hover {
     transform: translateY(-10px) scale(1.02);
     border-color: rgba(139, 92, 246, 0.7);
@@ -306,7 +319,6 @@
     background: rgba(139, 92, 246, 0.1);
 }
 
-/* Ripple Effect saat diklik */
 .tool-card:active::after {
     content: '';
     position: absolute;
@@ -326,7 +338,6 @@
     100% { opacity: 0; width: 300px; height: 300px; }
 }
 
-/* Icon Animation */
 .tool-icon {
     font-size: 2.5rem;
     margin-bottom: 12px;
@@ -344,7 +355,6 @@
     text-shadow: 0 0 15px #c084fc;
 }
 
-/* Tool Name */
 .tool-name {
     font-size: 0.95rem;
     font-weight: 600;
@@ -371,7 +381,6 @@
     width: 100%;
 }
 
-/* Progress Bar */
 .tool-percent {
     display: flex;
     align-items: center;
@@ -400,7 +409,6 @@
     100% { background-position: 200% 50%; }
 }
 
-/* Percentage Text */
 .tool-percent span {
     font-size: 0.7rem;
     font-weight: 600;
@@ -418,7 +426,6 @@
     transform: scale(1.05);
 }
 
-/* Tombol Navigasi (opsional - tambahkan jika mau) */
 .tools-nav {
     display: flex;
     justify-content: center;
@@ -444,7 +451,6 @@
     transform: scale(1.1);
 }
 
-/* Animasi Fade In untuk Cards */
 .tool-card {
     opacity: 0;
     transform: translateX(30px);
@@ -466,76 +472,5 @@
     to {
         opacity: 1;
         transform: translateX(0);
-    }
-}
-
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 968px) {
-    .skills-categories {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .skill-category {
-        min-width: auto;
-    }
-    
-    .skills-title {
-        font-size: 2rem;
-    }
-    
-    .tools-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .skills {
-        padding: 80px 5%;
-    }
-    
-    .skills-title {
-        font-size: 1.8rem;
-    }
-    
-    .category-title {
-        font-size: 1.3rem;
-    }
-    
-    .overall-percent {
-        font-size: 1.4rem;
-    }
-    
-    .skill-category {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .skills-title {
-        font-size: 1.5rem;
-    }
-    
-    .tools-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 15px;
-    }
-    
-    .tool-card {
-        padding: 12px;
-    }
-    
-    .tool-icon {
-        font-size: 1.8rem;
-    }
-    
-    .tool-name {
-        font-size: 0.8rem;
-    }
-    
-    .overall-skill {
-        padding: 15px;
     }
 }

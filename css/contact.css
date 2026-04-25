@@ -1,14 +1,36 @@
-/* ================= CONTACT.CSS - 2 BOX SEPARATE ================= */
+/* ================= CONTACT.CSS ================= */
 
+/* CONTACT SECTION */
 .contact {
     padding: 100px 5%;
     position: relative;
     z-index: 2;
+    background: linear-gradient(145deg, #0a0515 0%, #120a25 50%, #0a0515 100%);
+    isolation: isolate;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    min-height: 100vh;
 }
 
 .contact-container {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Pemisah visual antar section */
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c084fc, #a855f7, #c084fc, transparent);
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* ========== HEADER ========== */
@@ -95,7 +117,7 @@
 .form-group textarea {
     width: 100%;
     padding: 14px 18px 14px 48px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(41, 0, 112, 0);
     border: 1px solid rgba(139, 92, 246, 0.3);
     border-radius: 12px;
     color: #fff;
@@ -252,65 +274,255 @@
     }
 }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width: 968px) {
-    .contact-wrapper {
-        flex-direction: column;
-        gap: 30px;
+/* ================= CONTACT - ABSTRACT BACKGROUND (SUPER KELIATAN) ================= */
+
+.contact-bg-abstract {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* ===== 1. FLOATING RINGS ===== */
+.contact-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid rgba(192, 132, 252, 0.7);
+    background: transparent;
+    animation: ringExpand 6s ease-out infinite;
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.5);
+}
+
+.ring-1 {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.ring-2 {
+    width: 180px;
+    height: 180px;
+    bottom: 10%;
+    right: 8%;
+    animation-delay: 2s;
+    animation-duration: 8s;
+}
+
+.ring-3 {
+    width: 80px;
+    height: 80px;
+    top: 40%;
+    left: 88%;
+    animation-delay: 4s;
+    animation-duration: 5s;
+}
+
+@keyframes ringExpand {
+    0% {
+        transform: scale(0.2);
+        opacity: 1;
+        border-width: 4px;
     }
-    
-    .contact-title {
-        font-size: 2rem;
-    }
-    
-    .contact-form-box, .contact-info-box {
-        padding: 30px;
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+        border-width: 1px;
     }
 }
 
+/* ===== 2. FLOATING BUBBLES ===== */
+.contact-bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.5), rgba(168, 85, 247, 0.3));
+    animation: bubbleFloat 8s ease-in-out infinite;
+    box-shadow: 0 0 25px rgba(192, 132, 252, 0.4);
+    border: 1px solid rgba(192, 132, 252, 0.3);
+}
+
+.bubble-1 {
+    width: 80px;
+    height: 80px;
+    top: 12%;
+    right: 18%;
+    animation-delay: 0s;
+    animation-duration: 7s;
+}
+
+.bubble-2 {
+    width: 50px;
+    height: 50px;
+    bottom: 20%;
+    left: 12%;
+    animation-delay: 1.5s;
+    animation-duration: 9s;
+}
+
+.bubble-3 {
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    right: 5%;
+    animation-delay: 3s;
+    animation-duration: 11s;
+}
+
+.bubble-4 {
+    width: 35px;
+    height: 35px;
+    bottom: 8%;
+    right: 25%;
+    animation-delay: 5s;
+    animation-duration: 6s;
+}
+
+@keyframes bubbleFloat {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translateY(-25px) translateX(15px);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50px) translateX(-10px);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translateY(-20px) translateX(20px);
+        opacity: 1;
+    }
+}
+
+/* ===== 3. GRADIENT BLOBS ===== */
+.contact-blob {
+    position: absolute;
+    border-radius: 60% 40% 50% 50% / 40% 50% 60% 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.35), rgba(192, 132, 252, 0.2));
+    animation: blobMove 12s ease-in-out infinite;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 320px;
+    top: -80px;
+    left: -120px;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 350px;
+    height: 280px;
+    bottom: -70px;
+    right: -100px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3), rgba(139, 92, 246, 0.15));
+    animation-delay: 4s;
+}
+
+@keyframes blobMove {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+        border-radius: 60% 40% 50% 50% / 40% 50% 60% 50%;
+        opacity: 0.6;
+    }
+    33% {
+        transform: rotate(10deg) scale(1.1);
+        border-radius: 45% 55% 48% 52% / 55% 48% 52% 45%;
+        opacity: 0.9;
+    }
+    66% {
+        transform: rotate(-8deg) scale(0.95);
+        border-radius: 55% 45% 52% 48% / 48% 52% 45% 55%;
+        opacity: 0.7;
+    }
+}
+
+/* ===== 4. FLOATING PARTICLES ===== */
+.contact-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #ffffff, #c084fc);
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleDrift 7s linear infinite;
+    box-shadow: 0 0 15px rgba(192, 132, 252, 0.8);
+}
+
+.p1 { top: 8%; left: 20%; animation-delay: 0s; }
+.p2 { top: 25%; left: 75%; animation-delay: 1.4s; width: 7px; height: 7px; }
+.p3 { top: 45%; left: 8%; animation-delay: 2.8s; width: 5px; height: 5px; }
+.p4 { top: 65%; left: 45%; animation-delay: 4.2s; width: 6.5px; height: 6.5px; }
+.p5 { top: 80%; left: 70%; animation-delay: 5.6s; width: 5.5px; height: 5.5px; }
+
+@keyframes particleDrift {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-150px) translateX(60px);
+        opacity: 0;
+    }
+}
+
+/* ===== 5. CENTER GLOW ===== */
+.contact-soft-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.25), rgba(192, 132, 252, 0.12), transparent);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: glowPulse 8s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .contact {
-        padding: 80px 5%;
-    }
+    .ring-1 { width: 70px; height: 70px; }
+    .ring-2 { width: 100px; height: 100px; }
+    .ring-3 { width: 50px; height: 50px; }
     
-    .contact-title {
-        font-size: 1.8rem;
-    }
+    .bubble-1 { width: 50px; height: 50px; }
+    .bubble-2 { width: 35px; height: 35px; }
+    .bubble-3 { width: 65px; height: 65px; }
+    .bubble-4 { width: 25px; height: 25px; }
     
-    .info-block {
-        margin-bottom: 25px;
-    }
+    .blob-1 { width: 250px; height: 200px; }
+    .blob-2 { width: 200px; height: 180px; }
+    
+    .contact-soft-glow { width: 350px; height: 350px; }
 }
 
 @media (max-width: 480px) {
-    .contact-title {
-        font-size: 1.5rem;
-    }
-    
-    .contact-badge {
-        font-size: 0.7rem;
-    }
-    
-    .contact-form-box, .contact-info-box {
-        padding: 20px;
-    }
-    
-    .info-icon {
-        width: 38px;
-        height: 38px;
-    }
-    
-    .info-icon i {
-        font-size: 1rem;
-    }
-    
-    .input-icon i {
-        font-size: 0.9rem;
-    }
-    
-    .form-group input,
-    .form-group textarea {
-        padding: 12px 15px 12px 42px;
-        font-size: 0.85rem;
-    }
+    .ring-1, .ring-2, .ring-3 { opacity: 0.5; }
+    .bubble-1, .bubble-2, .bubble-3, .bubble-4 { opacity: 0.4; }
+    .contact-particle { opacity: 0.3; }
+    .contact-soft-glow { width: 250px; height: 250px; opacity: 0.3; }
 }

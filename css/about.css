@@ -2,8 +2,33 @@
 .about {
     padding: 80px 5%;
     position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 0% 0%, rgba(45, 27, 78, 0.85) 0%, transparent 55%),
+        radial-gradient(ellipse at 100% 100%, rgba(13, 7, 24, 0.9) 0%, transparent 50%),
+        linear-gradient(180deg,
+            #07030f 0%,
+            #0d0520 30%,
+            #0a0418 70%,
+            #07030f 100%
+        );
+    isolation: isolate;
 }
 
+/* Garis pembatas atas (antara Hero dan About) */
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c084fc, #a855f7, #c084fc, transparent);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Biar konten about selalu di atas semua bg elemen */
 .about-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -11,6 +36,8 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 10;
 }
 
 /* ABOUT IMAGE */
@@ -127,37 +154,6 @@
 .star-7 { width: 1px; height: 1px; top: 15%; left: -8%; animation: twinkle 2.8s ease infinite 0.2s; }
 .star-8 { width: 1.5px; height: 1.5px; top: 85%; left: 15%; animation: twinkle 2.1s ease infinite 0.7s; }
 
-/* Animations */
-@keyframes orbitSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-@keyframes orbitSpinReverse {
-    from { transform: rotate(360deg); }
-    to { transform: rotate(0deg); }
-}
-
-@keyframes orbitPlanet1 {
-    from { transform: translateX(-50%) rotate(0deg) translateX(calc(50% + 20px)) rotate(0deg); }
-    to { transform: translateX(-50%) rotate(360deg) translateX(calc(50% + 20px)) rotate(-360deg); }
-}
-
-@keyframes orbitPlanet2 {
-    from { transform: translateY(-50%) rotate(0deg) translateY(calc(50% + 10px)) rotate(0deg); }
-    to { transform: translateY(-50%) rotate(360deg) translateY(calc(50% + 10px)) rotate(-360deg); }
-}
-
-@keyframes nebulaPulse {
-    0%, 100% { opacity: 0.3; transform: scale(0.95); }
-    50% { opacity: 0.6; transform: scale(1.05); }
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0; transform: scale(0.5); }
-    50% { opacity: 1; transform: scale(1.2); }
-}
-
 .about-image:hover img {
     transform: scale(1.03);
     box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.15), 0 25px 50px -18px rgba(0, 0, 0, 0.5);
@@ -197,6 +193,13 @@
     display: inline-block;
 }
 
+.about-title span {
+    background: linear-gradient(135deg, #c084fc, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
 .about-title::after {
     content: '';
     position: absolute;
@@ -215,7 +218,7 @@
     line-height: 1.5;
     color: #cbd5e1;
     margin-bottom: 25px;
-    letter-spacing: 2px;
+    letter-spacing: 1;
 }
 
 .about-desc strong {
@@ -223,7 +226,7 @@
     font-weight: 600;
 }
 
-/* INFO GRID - PERSIS SEPERTI FOTO */
+/* INFO GRID */
 .about-info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -303,7 +306,7 @@
     background: linear-gradient(135deg, #d8b4fe, #c084fc);
 }
 
-/* ========== MODAL POPUP ========== */
+/* MODAL POPUP */
 .modal {
     display: none;
     position: fixed;
@@ -323,11 +326,6 @@
     animation: fadeIn 0.3s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
 .modal-content {
     background: linear-gradient(135deg, #0a0515, #1a0a2e);
     border-radius: 20px;
@@ -338,11 +336,6 @@
     border: 1px solid rgba(139, 92, 246, 0.3);
     box-shadow: 0 0 50px rgba(139, 92, 246, 0.2);
     animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
 }
 
 .modal-header {
@@ -395,41 +388,4 @@
     font-size: 0.95rem;
     line-height: 1.7;
     margin-bottom: 15px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 968px) {
-    .about-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 40px;
-    }
-    
-    .about-left {
-        flex: 1;
-    }
-    
-    .about-right {
-        flex: 1;
-        text-align: center;
-    }
-    
-    .about-buttons {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .about-subtitle {
-        font-size: 0.7rem;
-    }
-    
-    .btn-readmore, .btn-download {
-        padding: 10px 24px;
-        font-size: 0.8rem;
-    }
-    
-    .about-image {
-        max-width: 280px;
-    }
 }

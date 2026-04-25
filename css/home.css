@@ -7,7 +7,13 @@
     padding: 120px 5% 80px;
     position: relative;
     z-index: 2;
-    margin-top: 2%;
+    margin-top: 1%;
+}
+
+.hero.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
 
 .hero-container {
@@ -27,7 +33,7 @@
 }
 
 .hero-title {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 15px;
@@ -37,15 +43,14 @@
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid #c084fc;
-    width: auto;
+    width: 0;                          /* mulai dari 0 */
     display: inline-block;
-    max-width: 100%;
-    animation: typing 3.5s steps(40, end) forwards, blink 0.8s infinite;
+    animation: typing 3.5s steps(32, end) forwards, blink 0.8s infinite;
 }
 
 @keyframes typing {
     from { width: 0; }
-    to { width: 100%; }
+    to { width: 26ch; }               /* pakai "ch" unit = jumlah karakter */
 }
 
 @keyframes blink {
@@ -61,7 +66,7 @@
     margin-left: 8px;
 }
 
-/* ROLE TEXT - cukup ganti warna dan ukuran */
+/* ROLE TEXT */
 .role-text {
     font-size: 1.2rem;
     font-weight: 700;
@@ -95,7 +100,7 @@
     color: #c084fc;
 }
 
-/* HERO DESCRIPTION - cukup kecilin dikit */
+/* HERO DESCRIPTION */
 .hero-desc {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
@@ -103,7 +108,7 @@
     line-height: 1.7;
     margin-bottom: 30px;
     max-width: 600px;
-    color: #a9a9a9;
+    color: #dfdfdf;
     letter-spacing: 1.2px;
     padding-left: 18px;
     border-left: 3px solid #c084fc;
@@ -233,58 +238,4 @@
     background: #05030A;
     z-index: 1;
     pointer-events: none;
-}
-
-/* RESPONSIVE */
-@media (max-width: 968px) {
-    .hero-container {
-        flex-direction: column-reverse;
-        text-align: center;
-        gap: 40px;
-    }
-    .hero-left {
-        text-align: center;
-    }
-    .hero-desc {
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .hero-buttons {
-        justify-content: center;
-    }
-    .hero-title {
-        font-size: 2.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-buttons {
-        flex-direction: column;
-        gap: 20px;
-        align-items: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero {
-        padding: 100px 5% 50px;
-    }
-    .hero-title {
-        font-size: 1.8rem;
-    }
-    .hero-desc {
-        font-size: 0.95rem;
-    }
-    .btn-outline {
-        padding: 10px 24px;
-        font-size: 0.9rem;
-    }
-    .social-icon {
-        width: 38px;
-        height: 38px;
-        font-size: 1rem;
-    }
-    .hero-image {
-        max-width: 280px;
-    }
 }

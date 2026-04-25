@@ -1,14 +1,32 @@
-/* ================= PROJECTS.CSS ================= */
-
+/* PROJECTS SECTION - WARNA UNGU */
 .projects {
     padding: 100px 5%;
     position: relative;
     z-index: 2;
+    background: linear-gradient(165deg, #0a0515 0%, #140c28 50%, #0a0515 100%);
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Garis pembatas atas (antara Skills dan Projects) */
+.projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c084fc, #a855f7, #c084fc, transparent);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .projects-container {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 10;
 }
 
 .projects-header {
@@ -179,7 +197,11 @@
     color: #fff;
 }
 
-/* Modal (SAMA KAYA ABOUT MODAL) */
+.project-card.hide {
+    display: none;
+}
+
+/* Modal */
 .project-modal {
     display: none;
     position: fixed;
@@ -327,23 +349,4 @@
 .modal-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
-}
-
-.project-card.hide {
-    display: none;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .projects-title {
-        font-size: 1.8rem;
-    }
-    
-    .project-buttons {
-        flex-direction: column;
-    }
 }

@@ -9,17 +9,29 @@
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/skills.css">
     <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/achievements.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="js/script.js" defer></script>
     <script src="js/skill.js" defer></script>
     <script src="js/projects.js" defer></script>
+    <script src="js/sertifikat.js" defer></script>
 </head>
 <body>
+
+    <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner">
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-text">Loading Universe...</div>
+    </div>
+</div>
+
  <!-- Navbar Section -->
 <nav class="navbar">
     <div class="nav-container">
@@ -81,7 +93,7 @@
     <div class="dimension-portal"></div>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+<section class="hero scroll-section" id="home">
         <div class="hero-container">
             <div class="hero-left">
           <h2 class="hero-title">Hello, I Am <span>Aura Aqueeni Ilmira</span></h2>
@@ -93,10 +105,10 @@
                 <div class="hero-buttons">
                     <a href="#about" class="btn-outline">About Me</a>
                     <div class="hero-social">
-                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/yrzqueen_/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/6283876459470" class="social-icon"><i class="fab fa-whatsapp"></i></a>                        
+                        <a href="www.linkedin.com/in/auraaqueeniilmira" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="http://github.com/auraaqueeniilmira12" class="social-icon"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
@@ -110,35 +122,111 @@
         </div>
     </section>
 
+
 <!-- About Section -->
-<section class="about" id="about">
+<section class="about scroll-section" id="about" style="position: relative; overflow: hidden;">
+
+    <!-- ===== DARK SIDE OF THE MOON ELEMENTS ===== -->
+    <div class="about-dark-overlay"></div>
+    <div class="about-moonlight"></div>
+    <div class="about-stars" id="aboutStars"></div>
+
+    <!-- Moon utama pojok kiri atas -->
+    <div class="about-moon">
+        <div class="crater crater-1"></div>
+        <div class="crater crater-2"></div>
+        <div class="crater crater-3"></div>
+    </div>
+
+    <!-- ===== GALACTIC CORE (tengah bawah, kabur jauh) ===== -->
+    <div class="about-galactic-core"></div>
+    <div class="about-galactic-arm about-galactic-arm-1"></div>
+    <div class="about-galactic-arm about-galactic-arm-2"></div>
+    <div class="about-galactic-arm about-galactic-arm-3"></div>
+
+    <!-- ===== NEBULA EAGLE (kanan atas) ===== -->
+    <div class="about-nebula-eagle">
+        <div class="eagle-pillar eagle-pillar-1"></div>
+        <div class="eagle-pillar eagle-pillar-2"></div>
+        <div class="eagle-pillar eagle-pillar-3"></div>
+        <div class="eagle-glow"></div>
+    </div>
+
+    <!-- ===== SUPERNOVA REMNANT (kiri tengah) ===== -->
+    <div class="about-supernova">
+        <div class="supernova-ring supernova-ring-1"></div>
+        <div class="supernova-ring supernova-ring-2"></div>
+        <div class="supernova-ring supernova-ring-3"></div>
+        <div class="supernova-core"></div>
+        <div class="supernova-ejecta supernova-ejecta-1"></div>
+        <div class="supernova-ejecta supernova-ejecta-2"></div>
+        <div class="supernova-ejecta supernova-ejecta-3"></div>
+        <div class="supernova-ejecta supernova-ejecta-4"></div>
+        <div class="supernova-ejecta supernova-ejecta-5"></div>
+        <div class="supernova-ejecta supernova-ejecta-6"></div>
+    </div>
+
+    <!-- ===== CONSTELLATION LINES ===== -->
+    <div class="about-constellation" id="aboutConstellation">
+        <!-- SVG constellation digenerasi lewat JS -->
+    </div>
+
+    <!-- ===== WORMHOLE TUNNEL (pojok kanan bawah) ===== -->
+    <div class="about-wormhole">
+        <div class="wormhole-ring wormhole-ring-1"></div>
+        <div class="wormhole-ring wormhole-ring-2"></div>
+        <div class="wormhole-ring wormhole-ring-3"></div>
+        <div class="wormhole-ring wormhole-ring-4"></div>
+        <div class="wormhole-ring wormhole-ring-5"></div>
+        <div class="wormhole-core"></div>
+        <div class="wormhole-beam wormhole-beam-1"></div>
+        <div class="wormhole-beam wormhole-beam-2"></div>
+        <div class="wormhole-beam wormhole-beam-3"></div>
+        <div class="wormhole-beam wormhole-beam-4"></div>
+    </div>
+
+    <!-- ===== NEBULA DUST CLOUDS (tersebar) ===== -->
+    <div class="about-dust-cloud about-dust-1"></div>
+    <div class="about-dust-cloud about-dust-2"></div>
+    <div class="about-dust-cloud about-dust-3"></div>
+    <div class="about-dust-cloud about-dust-4"></div>
+
+    <!-- ===== FLOATING STAR CLUSTERS ===== -->
+    <div class="about-star-cluster about-cluster-1"></div>
+    <div class="about-star-cluster about-cluster-2"></div>
+    <div class="about-star-cluster about-cluster-3"></div>
+
+    <!-- ===== COSMIC PARTICLES (partikel kecil melayang) ===== -->
+    <div class="about-particles" id="aboutParticles"></div>
+
+    <!-- ===== KONTEN UTAMA ===== -->
     <div class="about-container">
         <div class="about-left">
-     <div class="about-image">
-    <div class="nebula"></div>
-    <div class="orbit-ring-1"></div>
-    <div class="orbit-ring-2"></div>
-    <div class="planet-1"></div>
-    <div class="planet-2"></div>
-    <div class="star star-1"></div>
-    <div class="star star-2"></div>
-    <div class="star star-3"></div>
-    <div class="star star-4"></div>
-    <div class="star star-5"></div>
-    <div class="star star-6"></div>
-    <div class="star star-7"></div>
-    <div class="star star-8"></div>
-    <img src="images/about.png" alt="Aura Aqueeni Ilmira">
-</div>
+            <div class="about-image">
+                <div class="nebula"></div>
+                <div class="orbit-ring-1"></div>
+                <div class="orbit-ring-2"></div>
+                <div class="planet-1"></div>
+                <div class="planet-2"></div>
+                <div class="star star-1"></div>
+                <div class="star star-2"></div>
+                <div class="star star-3"></div>
+                <div class="star star-4"></div>
+                <div class="star star-5"></div>
+                <div class="star star-6"></div>
+                <div class="star star-7"></div>
+                <div class="star star-8"></div>
+                <img src="images/about.png" alt="Aura Aqueeni Ilmira">
+            </div>
         </div>
-        
+
         <div class="about-right">
             <h3 class="about-subtitle">Discover</h3>
-            <h2 class="about-title">About Me</h2>
-        <p class="about-desc">
-    My name is <strong>Aura Aqueeni Ilmira</strong>. I am a student at <strong>SMK Negeri 1 Ciomas</strong> who focuses on <strong>website development</strong> and also <strong>writing</strong>. In web development, I learn to build functional and easy to understand websites. In writing, I write short stories and articles. I really enjoy the learning process in both.
-</p>
-            
+            <h2 class="about-title">Get To <span>Know Me</span></h2>
+            <p class="about-desc">
+                My name is <strong>Aura Aqueeni Ilmira</strong>. I am a student at <strong>SMK Negeri 1 Ciomas</strong> who focuses on <strong>website development</strong> and also <strong>writing</strong>. In web development, I learn to build functional and easy to understand websites. In writing, I write short stories and articles. I really enjoy the learning process in both.
+            </p>
+
             <div class="about-info-grid">
                 <div class="info-item">
                     <span class="info-label">Name:</span>
@@ -156,7 +244,6 @@
                     <span class="info-label">Address:</span>
                     <span class="info-value">Indonesia</span>
                 </div>
-    
                 <div class="info-item">
                     <span class="info-label">Motto:</span>
                     <span class="info-value">Be Nice</span>
@@ -166,10 +253,10 @@
                     <span class="info-value">Learn New Things</span>
                 </div>
             </div>
-            
+
             <div class="about-buttons">
                 <button class="btn-readmore" id="readMoreBtn">READ MORE</button>
-                <a href="https://drive.google.com/your-cv-link" class="btn-download" target="_blank">DOWNLOAD CV</a>
+                <a href="https://www.canva.com/design/DAHHWTgKWww/nQxbdwJB8_-JXVmLHjVFNA/edit" class="btn-download" target="_blank">DOWNLOAD CV</a>
             </div>
         </div>
     </div>
@@ -235,8 +322,21 @@
     </div>
 </div>
 <!-- Skills Section -->
-<section class="skills" id="skills">
-    <div class="skills-container">
+<section class="skills scroll-section" id="skills">
+    
+    <!-- 5 ABSTRACT BACKGROUND ELEMENTS -->
+    <div class="skills-bg-abstract">
+        <div class="grid-pattern"></div>
+        
+        <div class="abstract-circle circle-big"></div>
+        <div class="abstract-circle circle-small"></div>
+        <div class="abstract-circle circle-mid"></div>
+        
+        <div class="abstract-triangle triangle-1"></div>
+        <div class="abstract-triangle triangle-2"></div>
+        
+    </div>
+        <div class="skills-container">
         
         <!-- Judul Section -->
         <div class="skills-header">
@@ -520,9 +620,38 @@
         </div>
     </div>
 </div>
+</section>
 
-<!-- Projects Section -->
-<section class="projects" id="projects">
+<section class="projects scroll-section" id="projects">
+
+    <!-- ===== ABSTRACT BACKGROUND UNTUK PROJECTS ===== -->
+    <div class="projects-bg-abstract">
+        
+        <!-- Abstract Waves -->
+        <div class="project-wave wave-1"></div>
+        <div class="project-wave wave-3"></div>
+        
+        <!-- Floating Geometric Shapes -->
+        <div class="project-shape shape-hexagon"></div>
+        <div class="project-shape shape-diamond"></div>
+        <div class="project-shape shape-cross"></div>
+        
+        
+        <!-- Gradient Orbs -->
+        <div class="project-orb orb-purple"></div>
+        <div class="project-orb orb-pink"></div>
+        
+        <!-- Floating Dots Pattern -->
+        <div class="project-dots"></div>
+        
+        <!-- Abstract Corner Accents -->
+        <div class="corner-accent tl"></div>
+        <div class="corner-accent br"></div>
+        
+        <!-- Soft Glow Overlay -->
+        <div class="projects-glow"></div>
+    </div>
+    
     <div class="projects-container">
         <div class="projects-header">
             <h2 class="projects-title">Projects <span class="projects-highlight">Showcase</span></h2>
@@ -678,7 +807,7 @@
     </div>
 </section>
 
-<!-- Modal Popup untuk Project Details -->
+<!-- Modal Popup untuk Project Details (DI LUAR SECTION) -->
 <div class="modal project-modal" id="projectModal">
     <div class="modal-content">
         <div class="modal-header">
@@ -702,49 +831,735 @@
     </div>
 </div>
 
-<!-- Contact Section -->
-<section class="contact" id="contact">
-    <div class="contact-container">
+<!-- Honorary Achievements Section -->
+<section class="achievements scroll-section" id="achievements">
+
+    <!-- ===== ABSTRACT BACKGROUND ===== -->
+    <div class="achievements-bg">
+        
+        <!-- Floating Soft Circles -->
+        <div class="ach-soft-circle c1"></div>
+        <div class="ach-soft-circle c2"></div>
+        <div class="ach-soft-circle c3"></div>
+        
+        <!-- Diagonal Strips -->
+        <div class="ach-strip s1"></div>
+        <div class="ach-strip s2"></div>
+        
+        <!-- Twinkling Stars -->
+        <div class="ach-star star1"></div>
+        <div class="ach-star star2"></div>
+        <div class="ach-star star3"></div>
+        <div class="ach-star star4"></div>
+        <div class="ach-star star5"></div>
+        <div class="ach-star star6"></div>
+        
+    </div>
+
+    <div class="achievements-container">
+
         <!-- Header -->
+        <div class="achievements-header">
+            <h3 class="achievements-subtitle">My Credentials</h3>
+            <h2 class="achievements-title">Honorary <span>Achievements</span></h2>
+            <p class="achievements-desc">Certificates and recognitions earned throughout my journey</p>
+        </div>
+
+        <!-- 5 Sertifikat Utama (Preview Cards) -->
+        <div class="achievements-grid">
+
+            <!-- Card 1 -->
+            <div class="ach-card" onclick="openCertModal(0)">
+                <div class="ach-card-img">
+                    <img src="images/Sertifikat Belajar Dasar Pemograman Web.png" alt="Certificate 1">
+                    <div class="ach-card-overlay">
+                        <span class="ach-view-btn"><i class="fas fa-expand"></i> View</span>
+                    </div>
+                </div>
+                <div class="ach-card-info">
+                    <span class="ach-date"><i class="fas fa-calendar-alt"></i> January 2026</span>
+                    <h4 class="ach-title">Basic Web Programming</h4>
+                    <p class="ach-desc">Covered HTML, CSS, and basic JavaScript. Included creating static web pages, arranging layouts, and implementing simple interactive elements.</p>
+                    <span class="ach-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</span>
+                    <a href="https://drive.google.com/file/d/1FNj7Jt0iX0GDANafFjotplkghq9k78i2/view?usp=sharing" class="ach-drive-btn" target="_blank" onclick="event.stopPropagation()">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="ach-card" onclick="openCertModal(1)">
+                <div class="ach-card-img">
+                    <img src="images/Sertifikat Belajar Front End Web Pemula.png" alt="Certificate 2">
+                    <div class="ach-card-overlay">
+                        <span class="ach-view-btn"><i class="fas fa-expand"></i> View</span>
+                    </div>
+                </div>
+                <div class="ach-card-info">
+                    <span class="ach-date"><i class="fas fa-calendar-alt"></i> Febuari 2026</span>
+                    <h4 class="ach-title">Front-End Development</h4>
+                    <p class="ach-desc">Learned to build responsive website layouts using HTML, CSS, Flexbox, Grid, and basic JavaScript interactions.</p>
+                    <span class="ach-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</span>
+                    <a href="https://drive.google.com/file/d/1DZc0sExvqKP3OJI_5YINDzB4TUE2ehbV/view?usp=drive_link" class="ach-drive-btn" target="_blank" onclick="event.stopPropagation()">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="ach-card" onclick="openCertModal(2)">
+                <div class="ach-card-img">
+                    <img src="images/Sertifikat Peserta FSBN B.indo 2025.jpg" alt="Certificate 3">
+                    <div class="ach-card-overlay">
+                        <span class="ach-view-btn"><i class="fas fa-expand"></i> View</span>
+                    </div>
+                </div>
+                <div class="ach-card-info">
+                    <span class="ach-date"><i class="fas fa-calendar-alt"></i> July 2025</span>
+                    <h4 class="ach-title">National Science and Language Festival Participant - FSBN</h4>
+                    <p class="ach-desc">Participated in FSBN, a national scale science and language competition organized by the National Achievement Center (PUSPRESNAS)</p>
+                    <span class="ach-issuer"><i class="fas fa-building"></i> PUSPRESNAS </span>
+                    <a href="https://drive.google.com/file/d/18xxXgJo-XjwyFK1inBEZVDXA__553ZRG/view?usp=drive_link" class="ach-drive-btn" target="_blank" onclick="event.stopPropagation()">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="ach-card" onclick="openCertModal(3)">
+                <div class="ach-card-img">
+                    <img src="images/Sertifikat Lulus Tasmi Juz 30,29 dan surat pilihan 2024.jpeg" alt="Certificate 4">
+                    <div class="ach-card-overlay">
+                        <span class="ach-view-btn"><i class="fas fa-expand"></i> View</span>
+                    </div>
+                </div>
+                <div class="ach-card-info">
+                    <span class="ach-date"><i class="fas fa-calendar-alt"></i> September 2024</span>
+                    <h4 class="ach-title">Quran Memorization Certificate - Juz 29, 30 & Chosen Surahs</h4>
+                    <p class="ach-desc">Completed Tasmi' examination for Juz 29, Juz 30, and selected surahs from the Quran. This certificate demonstrates the ability to recite and memorize Quranic verses fluently and accurately.</p>
+                    <span class="ach-issuer"><i class="fas fa-building"></i> SAUNG DARUTTAHFIZ</span>
+                    <a href="https://drive.google.com/file/d/1mwlxmFKzHoAW-eX4cVFYiE4de9ZIynGj/view?usp=sharing" class="ach-drive-btn" target="_blank" onclick="event.stopPropagation()">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="ach-card" onclick="openCertModal(4)">
+                <div class="ach-card-img">
+                    <img src="images/Peserta LDKS 2023.jpeg" alt="Certificate 5">
+                    <div class="ach-card-overlay">
+                        <span class="ach-view-btn"><i class="fas fa-expand"></i> View</span>
+                    </div>
+                </div>
+                <div class="ach-card-info">
+                    <span class="ach-date"><i class="fas fa-calendar-alt"></i> January 2026</span>
+                    <h4 class="ach-title">Leadership Basic Training Participants</h4>
+                    <p class="ach-desc">Participated in Basic Leadership Training (LDKS) organized by OSIS MTS Darul Ihya to develop leadership, teamwork, responsibility, and organizational management skills.</p>
+                    <span class="ach-issuer"><i class="fas fa-building"></i> OSIS - MTS DARUL IHYA</span>
+                    <a href="https://drive.google.com/file/d/1EXgJt2Qyd4imYG_964fJWbrtUF0VKGuv/view?usp=sharing" class="ach-drive-btn" target="_blank" onclick="event.stopPropagation()">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tombol buka layar mengambang -->
+        <div class="achievements-more-wrap">
+            <button class="achievements-more-btn" onclick="openAllCerts()">
+                <i class="fas fa-th-large"></i> View All Certificates
+                <span class="ach-count-badge">20+</span>
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== MODAL LAYAR MENGAMBANG — SEMUA SERTIFIKAT ===== -->
+<div class="cert-modal-overlay" id="certModalOverlay" onclick="closeCertModal()">
+    <div class="cert-modal-box" onclick="event.stopPropagation()">
+
+        <!-- Header modal -->
+        <div class="cert-modal-header">
+            <div>
+                <h2>All Certificates</h2>
+                <span class="cert-modal-sub">Scroll sideways to explore →</span>
+            </div>
+            <button class="cert-modal-close" onclick="closeCertModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Scroll horizontal semua sertifikat -->
+        <div class="cert-scroll-track" id="certScrollTrack">
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Belajar Dasar Pemograman Web.png" alt="Certificate 1">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> January 20026</span>
+                    <h3>Basic Web Programming</h3>
+                    <p class="cert-slide-desc">Learned HTML, CSS, and basic JavaScript to build structured and styled web pages with simple interactions. This was my first step in understanding how a website is built from scratch.</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+                    <a href="https://drive.google.com/file/d/1FNj7Jt0iX0GDANafFjotplkghq9k78i2/view?usp=sharing" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Belajar Front End Web Pemula.png" alt="Certificate 2">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> Febuary 2026</span>
+                    <h3>Front-End Development</h3>
+                    <p class="cert-slide-desc">I learned to build responsive website layouts using HTML, CSS, Flexbox, Grid, and basic JavaScript. This certificate gave me the skills to create web pages that work well on different screen sizes.</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+                    <a href="https://drive.google.com/file/d/1DZc0sExvqKP3OJI_5YINDzB4TUE2ehbV/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Peserta FSBN B.indo 2025.jpg" alt="Certificate 3">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> July 2025</span>
+                    <h3>National Science and Language Festival Participant - FSBN</h3>
+                    <p class="cert-slide-desc">Participated in FSBN, a national scale science and language competition organized by the National Achievement Center (PUSPRESNAS)</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> PUSPRESNAS</p>
+                    <a href="https://drive.google.com/file/d/18xxXgJo-XjwyFK1inBEZVDXA__553ZRG/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Lulus Tasmi Juz 30,29 dan surat pilihan 2024.jpeg" alt="Certificate 4">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> September 2024</span>
+                    <h3>Quran Memorization Certificate - Juz 29, 30 & Chosen Surahs</h3>
+                    <p class="cert-slide-desc">Completed Tasmi' examination for Juz 29, Juz 30, and selected surahs from the Quran. This certificate demonstrates the ability to recite and memorize Quranic verses fluently and accurately. </p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> SAUNG DARUTTAHFIZ</p>
+                    <a href="https://drive.google.com/file/d/1mwlxmFKzHoAW-eX4cVFYiE4de9ZIynGj/view?usp=sharing" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Peserta LDKS 2023.jpeg" alt="Certificate 5">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> January 2023</span>
+                    <h3>Leadership Basic Training Participant</h3>
+                    <p class="cert-slide-desc">Participated in Basic Leadership Training (LDKS) organized by OSIS MTS Darul Ihya to develop leadership, teamwork, responsibility, and organizational management skills.</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> OSIS- MTS DARUL IHYA</p>
+                    <a href="https://drive.google.com/file/d/1EXgJt2Qyd4imYG_964fJWbrtUF0VKGuv/view?usp=sharing" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Panitia LDKS 2024.jpeg" alt="Certificate 6">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> 2024</span>
+                    <h3>Committee Member - LDKS (Basic Leadership Training)</h3>
+                    <p class="cert-slide-desc">Served as a committee member for the 2024 LDKS event, helping to plan, coordinate, and execute leadership training for OSIS members at MTS Darul Ihya.</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> OSIS - MTS DARUL IHYA</p>
+                    <a href="https://drive.google.com/file/d/1BO6wD-EEIg0DWZwXbN4Mi_bzGWVB-bQ1/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Belajar Dasar Cloud dan GEN AI di AWS.png" alt="Certificate 7">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> january 2026</span>
+                    <h3>AWS Cloud & Generative AI Basic Learning</h3>
+                    <p class="cert-slide-desc">Learned cloud computing fundamentals and Generative AI basics, including AWS core services and AI model capabilities</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+                    <a href="https://drive.google.com/file/d/1_bG_05Uez9lAcohl_A2UPIoGOPrGXJ2S/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Belajar Back-End Pemula dengan JavaScript.png" alt="Certificate 8">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> Febuary 2026</span>
+                    <h3>Beginner Back End JavaScript</h3>
+                    <p class="cert-slide-desc">Learned back end basics with JavaScript including Node.js, HTTP requests, and database integration for server side applications.</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+                    <a href="https://drive.google.com/file/d/1ZO_d98UbfVdaHiO5KnvZC-52my_UctJe/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Belajar Dasar AI.png" alt="Certificate 9">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i>January 2026</span>
+                    <h3>AI Basic Learning </h3>
+                    <p class="cert-slide-desc">Learned AI fundamentals including machine learning basics, neural networks, and how AI processes data to make predictions.</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia </p>
+                    <a href="https://drive.google.com/file/d/1JrJxMYcIq5oDe5xhwOIUpfVZCbblNgYI/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Belajar Dasar Pemograman JavaScript.png" alt="Certificate 10">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> January 2026</span>
+                    <h3>Basic JavaScript Programming</h3>
+                    <p class="cert-slide-desc">Learned the fundamentals of programming using JavaScript, including variables, data types, functions, loops, conditionals, and basic DOM manipulation. This certificate built a strong foundation for understanding how programming logic works in web development.</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+                    <a href="https://drive.google.com/file/d/12Fr-SqbVZR4rPfb130LYRgFZxQSUbCH_/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Belajar Membuat Aplikasi dengan React.png" alt="Certificate 11">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> Febuary 2026</span>
+                    <h3>React Web Application Development </h3>
+                    <p class="cert-slide-desc">Learned how to build web applications using React, including components, props, state management, hooks, and basic routing. Gained practical skills in creating interactive user interfaces and managing application data efficiently.</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+                    <a href="https://drive.google.com/file/d/1Bsg5IhPCnavp4ymB7oJQlFqpGBD8uV0I/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Financial Literacy 101.png" alt="Certificate 12">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> June 2025</span>
+                    <h3>Financial Literacy 101 </h3>
+                    <p class="cert-slide-desc">Learned the fundamentals of financial literacy including budgeting, saving, managing expenses, understanding financial goals, and basic investment concepts. This course provided practical knowledge for making better personal financial decisions.</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+                    <a href="https://drive.google.com/file/d/1trF0rlJ2cGCTWws58MaSYpr9o4TAPZV-/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+               <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Introdcution to Financial Literacy.png" alt="Certificate 12">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> December 2025</span>
+                    <h3>Introduction to Financial Literacy Certificate</h3>
+                    <p class="cert-slide-desc">Learned basic financial literacy including budgeting, saving, needs vs wants, and financial goal planning.</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+                    <a href="https://drive.google.com/file/d/10I7tiuG0KGJq0j64wuKTC5ERHktSl9cO/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+                   <div class="cert-slide">
+                <div class="cert-slide-img">
+                    <img src="images/Sertifikat Memulai dasar pemograman untuk menjadi pengembang web.png" alt="Certificate 12">
+                </div>
+                <div class="cert-slide-info">
+                    <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> January 2026</span>
+                    <h3>Software Development Beginner</h3>
+                    <p class="cert-slide-desc">Learned programming fundamentals including algorithms, variables, control structures, functions, and basic problem solving for software development..</p>
+                    <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+                    <a href="https://drive.google.com/file/d/1ss4ZE8GQ3H7z3nEbnoeiGoma4iWFpJRk/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+                        <i class="fab fa-google-drive"></i> Open Certificate
+                    </a>
+                </div>
+            </div>
+
+            <!-- 1. Basic Java Programming Certificate -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Sertifikat memulai pemograman dengan Java.png" alt="Java Certificate">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> April 2025</span>
+        <h3>Basic Java Programming Certificate</h3>
+        <p class="cert-slide-desc">Learned the fundamentals of Java programming including variables, data types, loops, conditionals, functions, and basic object-oriented programming concepts.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+        <a href="https://drive.google.com/file/d/1OWzziCthLDmWCiLAVTSNiSpiG_4U2iys/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 2. Introduction to Programming Logic Certificate -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Sertifikat pengenalan ke logika pemograman.png" alt="Programming Logic Certificate">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> January 2026</span>
+        <h3>Introduction to Programming Logic Certificate</h3>
+        <p class="cert-slide-desc">Learned basic programming logic including algorithms, flowcharts, conditional logic, loops, and logical reasoning for problem solving.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> Dicoding Indonesia</p>
+        <a href="https://drive.google.com/file/d/1PGTjVZN5FKX7QFWEdPSD5evJaRJHPLt9/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 3. 3rd Winner Tahfiz Competition 2023 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Juara 3 Lomba Tahfiz DI 2023 .jpeg" alt="Tahfiz 3rd Winner">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> 2023</span>
+        <h3>3rd Winner - Tahfiz Competition 2023</h3>
+        <p class="cert-slide-desc">Won 3rd place in a Quran memorization competition held during the Maulid event at MTS Darul Ihya.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> MTS Darul Ihya</p>
+        <a href="https://drive.google.com/file/d/15rorpkze1rsZaK3ziv0vOeyPJaxTo6hH/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 4. Tahfiz Competition Winner 2018 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Juara Lomba Tahfiz 2018.jpeg" alt="Tahfiz Winner">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> 2018</span>
+        <h3>Tahfiz Competition Winner 2018</h3>
+        <p class="cert-slide-desc">Won a Quran memorization competition held during the Maulid event at MTS Darul Ihya in 2018.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> MMI</p>
+        <a href="https://drive.google.com/file/d/1iZu-PfZCpudnepSiI3Dpg5RAoPWQ14Fo/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 5. Cinematography Participant 2023 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Peserta Cinematography 2023.jpeg" alt="Cinematography Participant">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> 2023</span>
+        <h3>Cinematography Participant 2023</h3>
+        <p class="cert-slide-desc">Participated in a cinematography competition organized by MTS Darul Ihya, exploring basic video production and storytelling through film.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> MTS Darul Ihya</p>
+        <a href="https://drive.google.com/file/d/1WRd07m1bPE7FU3fk0mu70sYcpXgCysS5/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 6. MANSION 2024 Participant -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Peserta Mansion 2024.jpeg" alt="MANSION Participant">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> October 2024</span>
+        <h3>MANSION 2024 Participant</h3>
+        <p class="cert-slide-desc">Participated in MANSION, an annual creative and innovation event Rohis</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> SMKN 1 Ciomas</p>
+        <a href="https://drive.google.com/file/d/1gGYVgkC9jLKKjXQnrEH64I669N8QFkmb/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 7. Tasmi Completion Juz 29 & 30 2023 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Sertifikat Lulus Tasmi Juz 30,29 dan surat pilihan 2024.jpeg" alt="Tasmi Certificate">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i>September 2023</span>
+        <h3>Tasmi Completion – Juz 29 & 30</h3>
+        <p class="cert-slide-desc">Successfully completed Tasmi examination for Juz 29 and Juz 30 of the Quran at Saung Darut, demonstrating fluency in memorization and recitation.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> Saung Daruttahfiz</p>
+        <a href="https://drive.google.com/file/d/1E-yqmazXHmAvjrI8U5Uv9nqqrMd9DubR/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 8. Tasmi Completion Juz 30 2022 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Sertifikat Lulus Tasmi Juz 30 2022.jpeg" alt="Tasmi Juz 30">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i>June 2022</span>
+        <h3>Tasmi Completion – Juz 30</h3>
+        <p class="cert-slide-desc">Successfully completed Tasmi examination for Juz 30 of the Quran at Saung Darut, proving memorization ability and proper recitation.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> Saung Daruttahfiz</p>
+        <a href="https://drive.google.com/file/d/1-Ux1FS5WI5TYLZAlkmMjOfxAGD-xnWTc/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 9. FSBN PAI 2025 Participant -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Peserta FSBN PAI 2025.jpg" alt="FSBN PAI">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> July2025</span>
+        <h3>FSBN Participant - Islamic Education (PAI) 2025</h3>
+        <p class="cert-slide-desc">Participated in FSBN for Islamic Education subject, organized by the National Achievement Center.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> Puspresnas</p>
+        <a href="https://drive.google.com/file/d/1ZOGPqO1w_aKIlXPtcxsI3ssJ0KosmCqg/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 11. IASC History 2025 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Sertifikat IASC peserta Sejarah 2025.jpg" alt="IASC History">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i>July 2025</span>
+        <h3>IASC Participant -  History 2025</h3>
+        <p class="cert-slide-desc">Participated in the Indonesian Advanced Science Competition (IASC) for History subject, organized by FOSNAS.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> FOSNAS</p>
+        <a href="https://drive.google.com/file/d/1SDy89yCcQAZINev5BLaD_8uNWVvwGzvu/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 12. IASC Participant 2025 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Sertifikat IASC peserta 2025.jpg" alt="IASC Participant">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> July 2025</span>
+        <h3>IASC Participant 2025</h3>
+        <p class="cert-slide-desc">Participated in the Indonesian Advanced Science Competition (IASC) organized by FOSNAS.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> FOSNAS</p>
+        <a href="https://drive.google.com/file/d/1csbfra_-WqQr6gapsdelnQkUUPcAHLOx/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 13. ISSC English 2025 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Peserta ISSC B.Inggris 2025.jpg" alt="ISSC English">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> July 2025</span>
+        <h3>ISSC Participant - English 2025</h3>
+        <p class="cert-slide-desc">Participated in the Indonesian Science Student Competition (ISSC) for English subject, organized by PRESMANIA.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> PRESMANIA</p>
+        <a href="https://drive.google.com/file/d/1kLgSQ_m7qA7nJVCQzrVb_yrf9FFNMkVP/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 14. ISSC History 2025 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Peserta ISSC sejarah 2025.jpg" alt="ISSC History">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> July 2025</span>
+        <h3>ISSC Participant – History 2025</h3>
+        <p class="cert-slide-desc">Participated in the Indonesian Science Student Competition (ISSC) for History subject, organized by PRESMANIA.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> PRESMANIA</p>
+        <a href="https://drive.google.com/file/d/1vQRBBpvbRqkb8ZfIbWXa2tR0R7bK4PWZ/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 15. OSSN Bahasa Indonesia 2025 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Peserta OSSN B.indo 2025.jpg" alt="OSSN Bahasa Indonesia">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i>July 2025</span>
+        <h3>OSSN Participant – Bahasa Indonesia 2025</h3>
+        <p class="cert-slide-desc">Participated in OSSN (Olimpiade Sains dan Statistika Nasional) for Indonesian Language subject, organized by the National Achievement Center (Puspresnas).</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> Puspresnas</p>
+        <a href="https://drive.google.com/file/d/1Lrh1apLD-aEf5QQq5U-aTHqO99cyyxhA/view?usp=sharing" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 16. OSSN English 2025 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Peserta OSSN B.inggris 2025.jpg" alt="OSSN English">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i>July 2025</span>
+        <h3>OSSN Participant -  English 2025</h3>
+        <p class="cert-slide-desc">Participated in OSSN (Olimpiade Sains dan Statistika Nasional) for English subject, organized by the National Achievement Center (Puspresnas).</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> Puspresnas</p>
+        <a href="https://drive.google.com/file/d/1mA0S352evYJbDwpndpkNTRkJ9EK2_wmo/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 17. OSSN PAI 2025 -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Peserta OSSN PAI 2025.jpg" alt="OSSN PAI">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i>July 2025</span>
+        <h3>OSSN Participant – Islamic Education (PAI) 2025</h3>
+        <p class="cert-slide-desc">Participated in OSSN (Olimpiade Sains dan Statistika Nasional) for Islamic Education subject, organized by the National Achievement Center (Puspresnas).</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> Puspresnas</p>
+        <a href="https://drive.google.com/file/d/12R92CBwMEnqjUf4oqAIg4qkX9UT16D6h/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+<!-- 18. Master Trainer Imbasan Program -->
+<div class="cert-slide">
+    <div class="cert-slide-img">
+        <img src="images/Sertifikat Peserta Program pengimbasan master trainer.jpg" alt="Master Trainer">
+    </div>
+    <div class="cert-slide-info">
+        <span class="cert-slide-date"><i class="fas fa-calendar-alt"></i> Oktober 2024</span>
+        <h3>Master Trainer Imbasan Program Participant</h3>
+        <p class="cert-slide-desc">Participated in a master trainer training program organized by SMKN 1 Ciomas, focused on developing training and mentoring skills.</p>
+        <p class="cert-slide-issuer"><i class="fas fa-building"></i> SMKN 1 Ciomas</p>
+        <a href="https://drive.google.com/file/d/1mqdosmiGqlablp426DTRm8IR90nxA2cQ/view?usp=drive_link" class="cert-drive-btn" target="_blank">
+            <i class="fab fa-google-drive"></i> Open Certificate
+        </a>
+    </div>
+</div>
+
+        </div>
+
+        <!-- Scroll buttons -->
+        <div class="cert-scroll-controls">
+            <button class="cert-scroll-btn" id="certScrollLeft" onclick="scrollCerts('left')">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="cert-scroll-dots" id="certDots"></div>
+            <button class="cert-scroll-btn" id="certScrollRight" onclick="scrollCerts('right')">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Contact Section -->
+<section class="contact scroll-section" id="contact">
+    
+    <!-- ===== ABSTRACT BACKGROUND CONTACT (BERBEDA) ===== -->
+    <div class="contact-bg-abstract">
+        
+        <!-- Floating Rings (seperti riak air) -->
+        <div class="contact-ring ring-1"></div>
+        <div class="contact-ring ring-2"></div>
+        <div class="contact-ring ring-3"></div>
+        
+        <!-- Floating Bubbles -->
+        <div class="contact-bubble bubble-1"></div>
+        <div class="contact-bubble bubble-2"></div>
+        <div class="contact-bubble bubble-3"></div>
+        <div class="contact-bubble bubble-4"></div>
+        
+        <!-- Soft Gradient Blobs -->
+        <div class="contact-blob blob-1"></div>
+        <div class="contact-blob blob-2"></div>
+        
+        <!-- Floating Particles -->
+        <div class="contact-particle p1"></div>
+        <div class="contact-particle p2"></div>
+        <div class="contact-particle p3"></div>
+        <div class="contact-particle p4"></div>
+        <div class="contact-particle p5"></div>
+        
+        <!-- Subtle Glow -->
+        <div class="contact-soft-glow"></div>
+    </div>
+    
+    <div class="contact-container">
         <div class="contact-header">
             <span class="contact-badge">GET IN TOUCH</span>
             <h2 class="contact-title">Let's Work <span class="contact-highlight">Together</span></h2>
             <p class="contact-subtitle">Your email address will not be published. Required fields are marked *</p>
         </div>
 
-        <!-- Two Separate Boxes -->
         <div class="contact-wrapper">
-            <!-- Left Side - Form Box -->
             <div class="contact-form-box">
-                <form id="contactForm">
+                <!-- Form dengan mailto -->
+                <form action="mailto:auraaqueeniilmira12@gmail.com" method="post" enctype="text/plain">
                     <div class="form-group">
                         <div class="input-icon">
                             <i class="fas fa-user"></i>
                         </div>
-                        <input type="text" id="name" placeholder="Name" required>
+                        <input type="text" name="Name" placeholder="Name" required>
                     </div>
                     <div class="form-group">
                         <div class="input-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
-                        <input type="email" id="email" placeholder="Email" required>
+                        <input type="email" name="Email" placeholder="Email" required>
                     </div>
                     <div class="form-group">
                         <div class="input-icon">
                             <i class="fas fa-phone-alt"></i>
                         </div>
-                        <input type="text" id="phone" placeholder="Phone">
+                        <input type="text" name="Phone" placeholder="Phone">
                     </div>
                     <div class="form-group">
-                        <div class="input-icon">
-                        </div>
-                        <textarea id="message" rows="5" placeholder="Your message" required></textarea>
+                        <textarea name="Message" rows="5" placeholder="Your message" required></textarea>
                     </div>
                     <button type="submit" class="submit-btn">SEND MESSAGE</button>
                 </form>
             </div>
 
-            <!-- Right Side - Info Box -->
             <div class="contact-info-box">
                 <div class="info-block">
                     <div class="info-icon">
@@ -752,7 +1567,7 @@
                     </div>
                     <div class="info-content">
                         <h3>OUR ADDRESS</h3>
-                        <p>Jln. Sukarapih, Kp. BBHS RT01/RW11 Kecamatan Ciomas Kabupaten Bogor</p>
+                        <p>Jln. Sukarapih, Kp. BBHS RT01/RW11<br>Kecamatan Ciomas, Kabupaten Bogor</p>
                     </div>
                 </div>
 
@@ -763,7 +1578,7 @@
                     <div class="info-content">
                         <h3>CONTACT</h3>
                         <p>+6283876459470</p>
-                        <p> auraaqueeniilmira12@gmail.com</p>
+                        <p>auraaqueeniilmira12@gmail.com</p>
                     </div>
                 </div>
 
@@ -772,11 +1587,14 @@
                         <i class="fas fa-share-alt"></i>
                     </div>
                     <div class="info-content">
-                        <h3>SOCIAL MEDIA</h3>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
-                            <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                            <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="https://www.instagram.com/yrzqueen_/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="https://wa.me/6283876459470" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="https://www.linkedin.com/in/auraaqueeniilmira" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                            <a href="https://github.com/auraaqueeniilmira12" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://www.tiktok.com/@yyurazey" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                            <a href="https://discord.com/users/yurazey8" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+                            <a href="https://www.youtube.com/@auraaqueeniilmira05" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
                         </div>
                     </div>
                 </div>
@@ -786,7 +1604,40 @@
 </section>
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer animate-section">
+    
+    <!-- ===== ABSTRACT BACKGROUND FOOTER (BERBEDA) ===== -->
+    <div class="footer-bg-abstract">
+        
+        <!-- Stars Field (Bukan dots, tapi bintang) -->
+        <div class="footer-stars"></div>
+        
+        <!-- Shooting Stars -->
+        <div class="footer-shooting s1"></div>
+        <div class="footer-shooting s2"></div>
+        <div class="footer-shooting s3"></div>
+        
+        <!-- Floating Diamonds -->
+        <div class="footer-diamond d1"></div>
+        <div class="footer-diamond d2"></div>
+        <div class="footer-diamond d3"></div>
+        
+        <!-- Soft Horizontal Lines -->
+        <div class="footer-line line-1"></div>
+        <div class="footer-line line-2"></div>
+        <div class="footer-line line-3"></div>
+        
+        <!-- Floating Sparks -->
+        <div class="footer-spark sp1"></div>
+        <div class="footer-spark sp2"></div>
+        <div class="footer-spark sp3"></div>
+        <div class="footer-spark sp4"></div>
+        <div class="footer-spark sp5"></div>
+        
+        <!-- Subtle Gradient Bottom -->
+        <div class="footer-gradient"></div>
+    </div>
+    
     <div class="footer-container">
         <!-- Back to Top Button -->
         <button class="back-to-top" id="backToTop">
@@ -797,8 +1648,8 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <h2 class="footer-logo">YURAZEY</h2>
-                <p class="footer-tagline">Author & Web Developer</p>
-                <p class="footer-desc">Creating digital experiences with passion and creativity.</p>
+                <p class="footer-tagline">Writer & Web Developer</p>
+                <p class="footer-desc">Turning thoughts into websites, and feelings into stories.</p>
             </div>
 
             <div class="footer-links">
@@ -816,20 +1667,20 @@
                 <div class="footer-column">
                     <h3>Connect</h3>
                     <ul>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">Wattpad</a></li>
+                        <li><a href="https://www.instagram.com/yrzqueen_/" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@yyurazey" target="_blank">TikTok</a></li>
+                        <li><a href="https://www.linkedin.com/in/auraaqueeniilmira" target="_blank">LinkedIn</a></li>
+                        <li><a href="https://github.com/auraaqueeniilmira12" target="_blank">GitHub</a></li>
+                        <li><a href="https://discord.com/users/yurazey8" target="_blank">Discord</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -837,9 +1688,9 @@
 
         <!-- Footer Bottom -->
         <div class="footer-bottom">
-            <p>&copy; 2024 YURAZEY. All rights reserved.</p>
+            <p>&copy; 2025 YURAZEY. All rights reserved.</p>
             <div class="footer-credit">
-                <p>Made with <i class="fas fa-heart"></i> by Aura Aqueeni Ilmira</p>
+                <p>Made with by Aura Aqueeni Ilmira</p>
             </div>
         </div>
     </div>
