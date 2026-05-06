@@ -1,8 +1,32 @@
 /* ================= RESET & BASE ================= */
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#030108;position:relative;overflow-x:hidden;min-height:100vh}
-body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 30% 40%,#0a0418,#030108,#010005);pointer-events:none;z-index:0}
 
+/* ================= FIX OVERFLOW GLOBAL ================= */
+html {
+    overflow-x: hidden !important;
+    width: 100% !important;
+}
+
+body {
+    font-family:'Poppins',sans-serif;
+    background:#030108;
+    position:relative;
+    overflow-x: hidden !important;
+    width: 100% !important;
+    min-height:100vh
+}
+
+body::before {
+    content:'';
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:radial-gradient(ellipse at 30% 40%,#0a0418,#030108,#010005);
+    pointer-events:none;
+    z-index:0
+}
 /* ================= NAVBAR ================= */
 .navbar{position:fixed;top:0;left:0;right:0;height:70px;background:transparent;z-index:9999;transition:background .3s,backdrop-filter .3s}
 .navbar.scrolled{background:rgba(10,5,21,.85);backdrop-filter:blur(10px)}
