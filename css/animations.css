@@ -1,6 +1,41 @@
-/* ================= COSMIC ELEMENTS & ANIMATIONS ================= */
+/* ================= ANIMATIONS.CSS (RINGKAS) ================= */
+/* Hanya animasi yang dipakai di HTML terbaru */
 
-/* COSMIC NEBULA */
+/* ===== 1. NAVBAR & MOBILE MENU ===== */
+@keyframes mobileLinkFade {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.mobile-menu.active .mobile-nav-link {
+    animation: mobileLinkFade 0.3s ease forwards;
+}
+.mobile-menu.active .mobile-nav-link:nth-child(1) { animation-delay: 0.05s; }
+.mobile-menu.active .mobile-nav-link:nth-child(2) { animation-delay: 0.1s; }
+.mobile-menu.active .mobile-nav-link:nth-child(3) { animation-delay: 0.15s; }
+.mobile-menu.active .mobile-nav-link:nth-child(4) { animation-delay: 0.2s; }
+.mobile-menu.active .mobile-nav-link:nth-child(5) { animation-delay: 0.25s; }
+
+
+/* ===== 3. HERO SECTION ===== */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 26ch; }
+}
+@keyframes blink {
+    0%, 100% { border-color: #c084fc; }
+    50% { border-color: transparent; }
+}
+@keyframes spinConic {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hero-title { animation: typing 3.5s steps(32, end) forwards, blink 0.8s infinite; }
+.hero-image::before { animation: spinConic 3s linear infinite; }
+/* ================= HERO COSMIC ANIMATIONS (RINGAN) ================= */
+
+/* 1. Nebula - background bergerak pelan */
 .cosmic-nebula {
     position: fixed;
     top: 0;
@@ -9,1185 +44,325 @@
     height: 100%;
     pointer-events: none;
     z-index: 0;
-    background: 
-        radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.15), transparent 40%),
-        radial-gradient(ellipse at 80% 60%, rgba(168, 85, 247, 0.12), transparent 45%),
-        radial-gradient(ellipse at 50% 80%, rgba(192, 132, 252, 0.08), transparent 50%),
-        radial-gradient(ellipse at 90% 20%, rgba(107, 70, 193, 0.1), transparent 35%);
-    animation: nebulaDrift 25s ease-in-out infinite;
+    background: radial-gradient(ellipse at 30% 40%, rgba(139, 92, 246, 0.12), transparent 60%);
+    animation: nebulaMove 15s ease-in-out infinite;
 }
 
-@keyframes nebulaDrift {
-    0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.7; }
-    50% { transform: scale(1.05) translate(2%, 1%); opacity: 1; }
+@keyframes nebulaMove {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.02); }
 }
 
-/* PLANET RING */
+/* 2. Planet Ring - cincin planet berputar */
 .planet-ring {
     position: fixed;
-    bottom: 10%;
-    right: -80px;
-    width: 200px;
-    height: 200px;
+    bottom: 8%;
+    right: -60px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #A855F7, #6B46C1, #2D1B4E);
-    box-shadow: 0 0 50px rgba(168, 85, 247, 0.4);
+    background: radial-gradient(circle, #A855F7, #2D1B4E);
+    opacity: 0.5;
     pointer-events: none;
     z-index: 0;
-    animation: planetFloat 20s ease-in-out infinite;
+    animation: ringSpin 15s linear infinite;
 }
 
 .planet-ring::before {
     content: '';
     position: absolute;
-    top: -20px;
-    left: -20px;
-    width: 240px;
-    height: 240px;
+    top: -12px;
+    left: -12px;
+    width: 174px;
+    height: 174px;
     border-radius: 50%;
-    border: 4px solid rgba(192, 132, 252, 0.6);
+    border: 2px solid rgba(192, 132, 252, 0.5);
     border-top-color: #C084FC;
     border-right-color: transparent;
-    transform: rotate(25deg);
-    animation: ringSpin 12s linear infinite;
 }
 
-.planet-ring::after {
-    content: '';
+@keyframes ringSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 3. Meteor - jatuh sekali-sekali */
+.meteor-purple {
     position: absolute;
-    top: -10px;
-    left: -10px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    border: 2px solid rgba(139, 92, 246, 0.4);
-    border-bottom-color: #8B5CF6;
-    border-left-color: transparent;
-    transform: rotate(-15deg);
-    animation: ringSpinReverse 15s linear infinite;
+    background: linear-gradient(135deg, #C084FC, transparent);
+    width: 2px;
+    height: 70px;
+    opacity: 0;
+    animation: meteorFall 5s linear infinite;
 }
 
+@keyframes meteorFall {
+    0% { top: -50px; opacity: 0; }
+    15% { opacity: 0.7; }
+    100% { top: 100%; opacity: 0; }
+}
+
+.meteor-p1 { top: -100px; left: 20%; animation-delay: 0s; }
+.meteor-p2 { top: -100px; left: 50%; animation-delay: 3s; }
+.meteor-p3 { top: -100px; left: 70%; animation-delay: 6s; }
+.meteor-p4 { top: -100px; left: 85%; animation-delay: 1.5s; }
+
+/* ===== 4. MODAL ===== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.modal.active { animation: fadeIn 0.3s ease; }
+.modal-content { animation: slideUp 0.3s ease; }
+.project-modal.active { animation: fadeIn 0.3s ease; }
+.project-modal .modal-content { animation: slideUp 0.3s ease; }
+
+/* ===== 5. SKILLS SECTION ===== */
+@keyframes shimmer {
+    0% { transform: translateX(-40px); }
+    100% { transform: translateX(40px); }
+}
+@keyframes progressShimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+@keyframes slideInRight {
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes rippleFade {
+    0% { opacity: 0.6; width: 0; height: 0; }
+    100% { opacity: 0; width: 300px; height: 300px; }
+}
+
+.overall-progress-fill::before { animation: shimmer 1.5s infinite; }
+.tool-progress-fill { animation: progressShimmer 2s infinite; }
+.tool-card {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideInRight 0.5s ease forwards;
+}
+.tool-card:active::after {
+    animation: rippleFade 0.5s ease-out;
+}
+
+/* Tool card delays */
+.tool-card:nth-child(1) { animation-delay: 0.05s; }
+.tool-card:nth-child(2) { animation-delay: 0.1s; }
+.tool-card:nth-child(3) { animation-delay: 0.15s; }
+.tool-card:nth-child(4) { animation-delay: 0.2s; }
+.tool-card:nth-child(5) { animation-delay: 0.25s; }
+.tool-card:nth-child(6) { animation-delay: 0.3s; }
+.tool-card:nth-child(7) { animation-delay: 0.35s; }
+.tool-card:nth-child(8) { animation-delay: 0.4s; }
+.tool-card:nth-child(9) { animation-delay: 0.45s; }
+.tool-card:nth-child(10) { animation-delay: 0.5s; }
+
+/* ===== 6. ACHIEVEMENTS CERT MODAL ===== */
+@keyframes certModalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes certModalSlideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.cert-modal-overlay.active { animation: certModalFadeIn 0.3s ease; }
+.cert-modal-box { animation: certModalSlideUp 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+
+/* ===== 7. CONTACT SECTION ===== */
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+.contact-form-box, .contact-info-box {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+.contact-form-box { animation-delay: 0.1s; }
+.contact-info-box { animation-delay: 0.2s; }
+
+/* ===== 8. FOOTER SECTION ===== */
+@keyframes logoShine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+.footer-logo { animation: logoShine 4s linear infinite; }
+.footer-credit i { animation: heartbeat 1.5s ease infinite; }
+
+.footer-brand, .footer-column {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+.footer-brand { animation-delay: 0.1s; }
+.footer-column:nth-child(1) { animation-delay: 0.2s; }
+.footer-column:nth-child(2) { animation-delay: 0.3s; }
+.footer-column:nth-child(3) { animation-delay: 0.4s; }
+
+/* ===== 9. SCROLL SECTION ANIMATIONS ===== */
+.scroll-section {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+}
+.scroll-section.hide-down {
+    opacity: 0;
+    transform: translateY(80px);
+    filter: blur(6px);
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.scroll-section.hide-up {
+    opacity: 0;
+    transform: translateY(-80px);
+    filter: blur(6px);
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.scroll-section.show {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    pointer-events: auto;
+    transition: all 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* ===== 10. COSMIC ELEMENTS (GLOBAL) ===== */
+@keyframes nebulaDrift {
+    0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+    50% { transform: scale(1.05) translate(2%, 1%); opacity: 1; }
+}
 @keyframes planetFloat {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-20px) rotate(5deg); }
 }
-
 @keyframes ringSpin {
     0% { transform: rotate(25deg); }
     100% { transform: rotate(385deg); }
 }
-
 @keyframes ringSpinReverse {
     0% { transform: rotate(-15deg); }
     100% { transform: rotate(-375deg); }
 }
-
-/* ALIEN HORIZON */
-.alien-horizon {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    background: linear-gradient(180deg, 
-        rgba(80, 40, 120, 0.4) 0%,
-        rgba(50, 20, 80, 0.6) 30%,
-        #2D1B4E 70%,
-        #1A0A2E 100%);
-    border-radius: 100% 100% 0 0;
-    pointer-events: none;
-    z-index: 0;
-    animation: horizonGlow 8s ease-in-out infinite;
-}
-
 @keyframes horizonGlow {
     0%, 100% { box-shadow: 0 -10px 30px rgba(139, 92, 246, 0.2); }
     50% { box-shadow: 0 -20px 50px rgba(192, 132, 252, 0.4); }
 }
-
-/* PURPLE METEOR */
-.purple-meteor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.meteor-purple {
-    position: absolute;
-    background: linear-gradient(135deg, #C084FC, #A855F7, #6B46C1, transparent);
-    width: 3px;
-    height: 100px;
-    border-radius: 50%;
-    filter: blur(1px);
-    opacity: 0;
-    animation: meteorPurpleFall 7s linear infinite;
-}
-
-.meteor-p1 { top: -100px; left: 20%; width: 3px; height: 120px; animation-delay: 0s; }
-.meteor-p2 { top: -100px; left: 50%; width: 2px; height: 80px; animation-delay: 2.5s; }
-.meteor-p3 { top: -100px; left: 75%; width: 3.5px; height: 150px; animation-delay: 5s; }
-.meteor-p4 { top: -100px; left: 85%; width: 2px; height: 90px; animation-delay: 1.5s; }
-
 @keyframes meteorPurpleFall {
-    0% {
-        top: -100px;
-        opacity: 0;
-        transform: rotate(30deg) translateX(0);
-    }
-    10% {
-        opacity: 0.8;
-    }
-    80% {
-        opacity: 0.6;
-    }
-    100% {
-        top: 100%;
-        opacity: 0;
-        transform: rotate(30deg) translateX(200px);
-    }
+    0% { top: -100px; opacity: 0; transform: rotate(30deg) translateX(0); }
+    10% { opacity: 0.8; }
+    80% { opacity: 0.6; }
+    100% { top: 100%; opacity: 0; transform: rotate(30deg) translateX(200px); }
 }
-
-/* BLACKHOLE */
-.blackhole {
-    position: fixed;
-    top: 30%;
-    left: -50px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #1a0a2e, #05030A, #000000);
-    box-shadow: 0 0 40px rgba(139, 92, 246, 0.3), inset 0 0 20px rgba(192, 132, 252, 0.2);
-    pointer-events: none;
-    z-index: 0;
-    animation: blackholePulse 6s ease-in-out infinite;
-}
-
-.blackhole::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30px;
-    height: 30px;
-    background: radial-gradient(circle, #C084FC, #A855F7);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    filter: blur(8px);
-    animation: blackholeGlow 3s ease-in-out infinite;
-}
-
 @keyframes blackholePulse {
     0%, 100% { transform: scale(1); opacity: 0.7; }
     50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 60px rgba(192, 132, 252, 0.5); }
 }
-
 @keyframes blackholeGlow {
     0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
     50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
 }
-
-/* COSMIC MIST */
-.cosmic-mist {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(ellipse at 40% 50%, rgba(139, 92, 246, 0.08), transparent 50%),
-                radial-gradient(ellipse at 70% 60%, rgba(168, 85, 247, 0.06), transparent 45%);
-    pointer-events: none;
-    z-index: 0;
-    animation: cosmicDrift 30s linear infinite;
-}
-
 @keyframes cosmicDrift {
     0% { transform: translate(0, 0); }
     50% { transform: translate(-5%, -3%); }
     100% { transform: translate(0, 0); }
 }
-
-/* SATELLITE ORBIT */
-.satellite-orbit {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 0;
-    animation: orbitRotate 20s linear infinite;
-}
-
-.satellite {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    width: 8px;
-    height: 8px;
-    background: #C084FC;
-    border-radius: 50%;
-    box-shadow: 0 0 15px #A855F7;
-    transform: translateX(-50%);
-}
-
-.satellite::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 2px;
-    background: linear-gradient(90deg, #C084FC, transparent);
-    transform: translateX(8px);
-}
-
-.satellite::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -20px;
-    width: 20px;
-    height: 2px;
-    background: linear-gradient(270deg, #A855F7, transparent);
-}
-
-.orbit-2 {
-    width: 700px;
-    height: 700px;
-    border: 1px solid rgba(168, 85, 247, 0.1);
-    animation: orbitRotateReverse 25s linear infinite;
-}
-
-.orbit-2 .satellite { background: #A855F7; }
-
 @keyframes orbitRotate {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
-
 @keyframes orbitRotateReverse {
     0% { transform: translate(-50%, -50%) rotate(360deg); }
     100% { transform: translate(-50%, -50%) rotate(0deg); }
 }
-
-/* COSMIC STARS */
-.cosmic-stars {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.cosmic-star {
-    position: absolute;
-    background: #ffffff;
-    border-radius: 50%;
-    opacity: 0;
-    animation: starFade 4s ease-in-out infinite alternate;
-}
-
 @keyframes starFade {
     0% { opacity: 0.1; transform: scale(1); }
     100% { opacity: 0.5; transform: scale(1.2); }
 }
-
-/* DIMENSION PORTAL */
-.dimension-portal {
-    position: fixed;
-    top: 20%;
-    right: 5%;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #6B46C1, #2D1B4E, #05030A);
-    box-shadow: 0 0 30px rgba(139, 92, 246, 0.5), inset 0 0 20px rgba(192, 132, 252, 0.3);
-    pointer-events: none;
-    z-index: 0;
-    animation: portalPulse 4s ease-in-out infinite, portalRotate 8s linear infinite;
-}
-
-.dimension-portal::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, #C084FC, #A855F7);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    filter: blur(5px);
-    animation: portalCore 3s ease-in-out infinite;
-}
-
-.dimension-portal::after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    border: 2px dashed rgba(192, 132, 252, 0.6);
-    animation: portalSpin 6s linear infinite;
-}
-
 @keyframes portalPulse {
     0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
     50% { transform: scale(1.08); box-shadow: 0 0 50px rgba(192, 132, 252, 0.8); }
 }
-
 @keyframes portalRotate {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
 @keyframes portalSpin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
 @keyframes portalCore {
     0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
     50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
 }
 
-/* ================= ABOUT — GALACTIC CORE ================= */
-.about-galactic-core {
-    position: absolute;
-    bottom: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background:
-        radial-gradient(ellipse at center,
-            rgba(192, 132, 252, 0.18) 0%,
-            rgba(139, 92, 246, 0.12) 20%,
-            rgba(107, 70, 193, 0.07) 40%,
-            transparent 70%);
-    filter: blur(30px);
-    pointer-events: none;
-    z-index: 1;
-    animation: galacticCorePulse 12s ease-in-out infinite;
-}
-
-@keyframes galacticCorePulse {
-    0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
-    50% { opacity: 0.9; transform: translateX(-50%) scale(1.08); }
-}
-
-.about-galactic-arm {
-    position: absolute;
-    bottom: -40px;
-    left: 50%;
-    width: 800px;
-    height: 200px;
-    border-radius: 50%;
-    background: radial-gradient(ellipse at center,
-        rgba(168, 85, 247, 0.08),
-        transparent 70%);
-    filter: blur(25px);
-    pointer-events: none;
-    z-index: 1;
-    transform-origin: center bottom;
-}
-
-.about-galactic-arm-1 {
-    transform: translateX(-50%) rotate(-30deg);
-    animation: galacticArmDrift 15s ease-in-out infinite;
-}
-.about-galactic-arm-2 {
-    transform: translateX(-50%) rotate(30deg);
-    animation: galacticArmDrift 15s ease-in-out infinite 5s;
-    background: radial-gradient(ellipse at center, rgba(192, 132, 252, 0.06), transparent 70%);
-}
-.about-galactic-arm-3 {
-    transform: translateX(-50%) rotate(90deg);
-    animation: galacticArmDrift 15s ease-in-out infinite 10s;
-    background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.05), transparent 70%);
-}
-
-@keyframes galacticArmDrift {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
-
-/* ================= ABOUT — NEBULA EAGLE ================= */
-.about-nebula-eagle {
-    position: absolute;
-    top: 5%;
-    right: 3%;
-    width: 280px;
-    height: 320px;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.eagle-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-        radial-gradient(ellipse at 50% 70%,
-            rgba(192, 132, 252, 0.2) 0%,
-            rgba(139, 92, 246, 0.1) 30%,
-            rgba(244, 114, 182, 0.06) 55%,
-            transparent 75%);
-    filter: blur(18px);
-    animation: eagleGlowPulse 8s ease-in-out infinite;
-}
-
-@keyframes eagleGlowPulse {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.06); }
-}
-
-.eagle-pillar {
-    position: absolute;
-    border-radius: 40% 40% 20% 20%;
-    background: linear-gradient(180deg,
-        rgba(192, 132, 252, 0.25) 0%,
-        rgba(139, 92, 246, 0.15) 40%,
-        rgba(107, 70, 193, 0.08) 100%);
-    filter: blur(6px);
-    animation: eaglePillarSway 10s ease-in-out infinite;
-}
-
-.eagle-pillar-1 {
-    width: 55px;
-    height: 160px;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation-delay: 0s;
-}
-.eagle-pillar-2 {
-    width: 40px;
-    height: 120px;
-    bottom: 10px;
-    left: 25%;
-    transform: translateX(-50%) rotate(-8deg);
-    animation-delay: 1.5s;
-    opacity: 0.8;
-}
-.eagle-pillar-3 {
-    width: 40px;
-    height: 130px;
-    bottom: 10px;
-    left: 75%;
-    transform: translateX(-50%) rotate(8deg);
-    animation-delay: 3s;
-    opacity: 0.7;
-}
-
-@keyframes eaglePillarSway {
-    0%, 100% { transform: translateX(-50%) scaleY(1); opacity: 0.7; }
-    50% { transform: translateX(-50%) scaleY(1.04); opacity: 1; }
-}
-
-/* ================= ABOUT — SUPERNOVA REMNANT ================= */
-.about-supernova {
-    position: absolute;
-    top: 35%;
-    left: 2%;
-    width: 180px;
-    height: 180px;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.supernova-core {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 14px;
-    height: 14px;
-    background: radial-gradient(circle, #ffffff, #f0abfc, #a855f7);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 20px rgba(192,132,252,0.8), 0 0 40px rgba(168,85,247,0.5);
-    animation: supernovaCorePulse 3s ease-in-out infinite;
-    z-index: 5;
-}
-
-@keyframes supernovaCorePulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 20px rgba(192,132,252,0.8), 0 0 40px rgba(168,85,247,0.5); }
-    50% { transform: translate(-50%, -50%) scale(1.4); box-shadow: 0 0 14px rgba(255,255,255,1), 0 0 35px rgba(192,132,252,1), 0 0 60px rgba(168,85,247,0.8); }
-}
-
-.supernova-ring {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 50%;
-    border: 1px solid rgba(192, 132, 252, 0.4);
-    transform: translate(-50%, -50%);
-    animation: supernovaExpand 4s ease-out infinite;
-}
-
-.supernova-ring-1 { width: 50px; height: 50px; border-color: rgba(255,255,255,0.5); animation-delay: 0s; }
-.supernova-ring-2 { width: 90px; height: 90px; border-color: rgba(192,132,252,0.35); animation-delay: 0.6s; }
-.supernova-ring-3 { width: 140px; height: 140px; border-color: rgba(139,92,246,0.2); animation-delay: 1.2s; }
-
-@keyframes supernovaExpand {
-    0% { transform: translate(-50%, -50%) scale(0.4); opacity: 0.9; }
-    100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
-}
-
-.supernova-ejecta {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 3px;
-    height: 30px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(192,132,252,0.4), transparent);
-    transform-origin: top center;
-    animation: supernovaEjecta 4s ease-out infinite;
-}
-
-.supernova-ejecta-1 { transform: translate(-50%, -50%) rotate(0deg); animation-delay: 0.1s; }
-.supernova-ejecta-2 { transform: translate(-50%, -50%) rotate(60deg); animation-delay: 0.3s; }
-.supernova-ejecta-3 { transform: translate(-50%, -50%) rotate(120deg); animation-delay: 0.5s; }
-.supernova-ejecta-4 { transform: translate(-50%, -50%) rotate(180deg); animation-delay: 0.2s; }
-.supernova-ejecta-5 { transform: translate(-50%, -50%) rotate(240deg); animation-delay: 0.4s; }
-.supernova-ejecta-6 { transform: translate(-50%, -50%) rotate(300deg); animation-delay: 0.6s; }
-
-@keyframes supernovaEjecta {
-    0% { height: 10px; opacity: 0.9; }
-    60% { opacity: 0.6; }
-    100% { height: 50px; opacity: 0; }
-}
-
-/* ================= ABOUT — CONSTELLATION ================= */
-.about-constellation {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.about-constellation svg {
-    width: 100%;
-    height: 100%;
-}
-
-.about-constellation .constellation-line {
-    stroke: rgba(192, 132, 252, 0.4);
-    stroke-width: 1.5;
-    stroke-dasharray: 4 8;
-    animation: constellationFade 6s ease-in-out infinite alternate;
-}
-
-.about-constellation .constellation-dot {
-    fill: #ffffff;
-    filter: drop-shadow(0 0 3px rgba(192, 132, 252, 0.6));
-    animation: constellationDotPulse 4s ease-in-out infinite alternate;
-}
-
-@keyframes constellationFade {
-    0% { opacity: 0.08; stroke-dashoffset: 0; }
-    100% { opacity: 0.35; stroke-dashoffset: 12; }
-}
-
-@keyframes constellationDotPulse {
-    0% { opacity: 0.2; r: 1.5px; }
-    100% { opacity: 0.9; r: 3px; }
-}
-
-/* ================= ABOUT — WORMHOLE TUNNEL ================= */
-.about-wormhole {
-    position: absolute;
-    bottom: 5%;
-    right: 4%;
-    width: 160px;
-    height: 160px;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.wormhole-core {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 28px;
-    height: 28px;
-    background: radial-gradient(circle, #000000 0%, #1a0a2e 40%, #2d1b4e 70%, transparent 100%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 15px rgba(0,0,0,0.9), 0 0 30px rgba(139,92,246,0.4), inset 0 0 10px rgba(192,132,252,0.2);
-    animation: wormholeCoreGlow 3s ease-in-out infinite;
-    z-index: 5;
-}
-
-@keyframes wormholeCoreGlow {
-    0%, 100% { box-shadow: 0 0 15px rgba(0,0,0,0.9), 0 0 30px rgba(139,92,246,0.4); }
-    50% { box-shadow: 0 0 20px rgba(0,0,0,0.9), 0 0 50px rgba(192,132,252,0.7); }
-}
-
-.wormhole-ring {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 50%;
-    border-style: solid;
-    transform: translate(-50%, -50%);
-}
-
-.wormhole-ring-1 { width: 36px; height: 36px; border-width: 2px; border-color: rgba(255,255,255,0.6); animation: wormholeSpin 2s linear infinite; }
-.wormhole-ring-2 { width: 58px; height: 58px; border-width: 1.5px; border-color: rgba(192,132,252,0.55); animation: wormholeSpin 3s linear infinite reverse; }
-.wormhole-ring-3 { width: 82px; height: 82px; border-width: 1px; border-color: rgba(139,92,246,0.4); animation: wormholeSpin 4s linear infinite; }
-.wormhole-ring-4 { width: 108px; height: 108px; border-width: 1px; border-color: rgba(107,70,193,0.25); border-style: dashed; animation: wormholeSpin 6s linear infinite reverse; }
-.wormhole-ring-5 { width: 140px; height: 140px; border-width: 0.5px; border-color: rgba(139,92,246,0.15); border-style: dashed; animation: wormholeSpin 9s linear infinite; }
-
-@keyframes wormholeSpin {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.wormhole-beam {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 55px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(192,132,252,0.4), transparent);
-    border-radius: 2px;
-    transform-origin: top center;
-    animation: wormholeBeamFade 3s ease-in-out infinite;
-}
-
-.wormhole-beam-1 { transform: translate(-50%, -50%) rotate(0deg); animation-delay: 0s; }
-.wormhole-beam-2 { transform: translate(-50%, -50%) rotate(90deg); animation-delay: 0.75s; }
-.wormhole-beam-3 { transform: translate(-50%, -50%) rotate(180deg); animation-delay: 1.5s; }
-.wormhole-beam-4 { transform: translate(-50%, -50%) rotate(270deg); animation-delay: 2.25s; }
-
-@keyframes wormholeBeamFade {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 0.8; }
-}
-
-/* ================= ABOUT — NEBULA DUST CLOUDS ================= */
-.about-dust-cloud {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-    filter: blur(35px);
-}
-
-.about-dust-1 { width: 350px; height: 200px; top: 10%; left: 15%; background: radial-gradient(ellipse, rgba(192,132,252,0.09), transparent 70%); animation: dustDrift 18s ease-in-out infinite; }
-.about-dust-2 { width: 280px; height: 180px; top: 55%; left: 55%; background: radial-gradient(ellipse, rgba(139,92,246,0.08), transparent 70%); animation: dustDrift 22s ease-in-out infinite 4s; }
-.about-dust-3 { width: 320px; height: 160px; bottom: 10%; left: 5%; background: radial-gradient(ellipse, rgba(168,85,247,0.07), transparent 70%); animation: dustDrift 20s ease-in-out infinite 8s; }
-.about-dust-4 { width: 260px; height: 150px; top: 30%; right: 8%; background: radial-gradient(ellipse, rgba(244,114,182,0.06), transparent 70%); animation: dustDrift 16s ease-in-out infinite 2s; }
-
-@keyframes dustDrift {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-    33% { transform: translate(15px, -10px) scale(1.05); opacity: 0.9; }
-    66% { transform: translate(-10px, 8px) scale(0.97); opacity: 0.7; }
-}
-
-/* ================= ABOUT — STAR CLUSTERS ================= */
-.about-star-cluster {
-    position: absolute;
-    pointer-events: none;
-    z-index: 1;
-    border-radius: 50%;
-}
-
-.about-cluster-1 {
-    width: 120px; height: 120px;
-    top: 12%; left: 40%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 1px, transparent 1px),
-                radial-gradient(circle at 70% 20%, rgba(255,255,255,0.4) 1px, transparent 1px),
-                radial-gradient(circle at 50% 60%, rgba(255,255,255,0.6) 1.5px, transparent 1.5px),
-                radial-gradient(circle at 20% 70%, rgba(255,255,255,0.3) 1px, transparent 1px),
-                radial-gradient(circle at 80% 75%, rgba(192,132,252,0.5) 1.5px, transparent 1.5px),
-                radial-gradient(circle at 60% 40%, rgba(255,255,255,0.4) 1px, transparent 1px),
-                radial-gradient(ellipse at center, rgba(192,132,252,0.08), transparent 70%);
-    animation: clusterTwinkle 7s ease-in-out infinite;
-}
-.about-cluster-2 {
-    width: 90px; height: 90px;
-    top: 65%; left: 70%;
-    background: radial-gradient(circle at 40% 25%, rgba(255,255,255,0.5) 1px, transparent 1px),
-                radial-gradient(circle at 75% 55%, rgba(255,255,255,0.4) 1px, transparent 1px),
-                radial-gradient(circle at 25% 65%, rgba(255,255,255,0.6) 1.5px, transparent 1.5px),
-                radial-gradient(circle at 60% 80%, rgba(192,132,252,0.4) 1px, transparent 1px),
-                radial-gradient(ellipse at center, rgba(139,92,246,0.07), transparent 70%);
-    animation: clusterTwinkle 9s ease-in-out infinite 2s;
-}
-.about-cluster-3 {
-    width: 100px; height: 100px;
-    bottom: 20%; left: 30%;
-    background: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.5) 1px, transparent 1px),
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 1.5px, transparent 1.5px),
-                radial-gradient(circle at 80% 40%, rgba(255,255,255,0.3) 1px, transparent 1px),
-                radial-gradient(circle at 40% 80%, rgba(192,132,252,0.5) 1px, transparent 1px),
-                radial-gradient(circle at 70% 70%, rgba(255,255,255,0.4) 1.5px, transparent 1.5px),
-                radial-gradient(ellipse at center, rgba(168,85,247,0.07), transparent 70%);
-    animation: clusterTwinkle 8s ease-in-out infinite 4s;
-}
-
-@keyframes clusterTwinkle {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.06); }
-}
-
-/* ================= ABOUT — COSMIC PARTICLES ================= */
-.about-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.about-particle {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: radial-gradient(circle, #ffffff, rgba(192, 132, 252, 0.6));
-    border-radius: 50%;
-    box-shadow: 0 0 4px rgba(192, 132, 252, 0.5);
-    animation: particleFloat linear infinite;
-}
-
-@keyframes particleFloat {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.8; }
-    90% { opacity: 0.4; }
-    100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }
-}
-
-/* ================= SKILLS - ABSTRACT BACKGROUND ================= */
-.skills-bg-abstract {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-/* 1. GRID PATTERN - Lebih jelas */
-.grid-pattern {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(rgba(192, 132, 252, 0.15) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(192, 132, 252, 0.15) 1px, transparent 1px);
-    background-size: 40px 40px;
-    animation: gridMove 20s linear infinite;
-}
-
+/* ===== 11. SKILLS - ABSTRACT BACKGROUND ===== */
 @keyframes gridMove {
     0% { background-position: 0 0; }
     100% { background-position: 40px 40px; }
 }
-
-/* 2. CIRCLES - Lebih besar dan jelas */
-.abstract-circle {
-    position: absolute;
-    border-radius: 50%;
-    border: 2px solid rgba(192, 132, 252, 0.35);
-    background: transparent;
-    animation: circlePulse 6s ease-in-out infinite;
-    box-shadow: 0 0 15px rgba(192, 132, 252, 0.2);
-}
-
-.circle-big { 
-    width: 400px; 
-    height: 400px; 
-    top: -120px; 
-    right: -120px;
-    animation-delay: 0s;
-}
-.circle-small { 
-    width: 180px; 
-    height: 180px; 
-    bottom: -60px; 
-    left: -60px;
-    animation-delay: 2s;
-}
-.circle-mid { 
-    width: 250px; 
-    height: 250px; 
-    top: 50%; 
-    left: 15%; 
-    transform: translateY(-50%);
-    animation-delay: 4s;
-}
-.circle-extra {
-    width: 100px;
-    height: 100px;
-    top: 20%;
-    right: 30%;
-    border: 1.5px solid rgba(168, 85, 247, 0.3);
-    animation-delay: 1s;
-}
-
 @keyframes circlePulse {
     0%, 100% { opacity: 0.4; transform: scale(1); border-width: 2px; }
     50% { opacity: 0.7; transform: scale(1.05); border-width: 3px; }
 }
-
-/* 3. TRIANGLES - Lebih tegas dan tambahan */
-.abstract-triangle {
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0.3;
-    animation: triangleFloat 8s ease-in-out infinite;
-    filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.4));
-}
-
-.triangle-1 {
-    border-left: 80px solid transparent;
-    border-right: 80px solid transparent;
-    border-bottom: 140px solid #c084fc;
-    top: 5%;
-    right: 5%;
-    animation-delay: 0s;
-}
-
-.triangle-2 {
-    border-left: 60px solid transparent;
-    border-right: 60px solid transparent;
-    border-top: 100px solid #a855f7;
-    bottom: 10%;
-    left: 5%;
-    animation-delay: 2s;
-}
-
-.triangle-3 {
-    border-left: 40px solid transparent;
-    border-right: 40px solid transparent;
-    border-bottom: 70px solid #8b5cf6;
-    top: 40%;
-    right: 20%;
-    animation-delay: 4s;
-}
-
-.triangle-4 {
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    border-top: 50px solid #c084fc;
-    bottom: 30%;
-    right: 10%;
-    animation-delay: 6s;
-}
-
 @keyframes triangleFloat {
     0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.25; }
     50% { transform: translateY(-15px) rotate(5deg); opacity: 0.45; }
 }
-
-/* 4. DOTS PATTERN - Lebih rapat dan jelas */
-.skills-dots {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(rgba(192, 132, 252, 0.2) 2px, transparent 2px);
-    background-size: 30px 30px;
-    animation: skillsDotsMove 25s linear infinite;
-}
-
 @keyframes skillsDotsMove {
     0% { background-position: 0 0; }
     100% { background-position: 50px 50px; }
 }
-
-/* 5. FLOATING SQUARES (Baru) */
-.skills-square {
-    position: absolute;
-    background: transparent;
-    border: 2px solid rgba(192, 132, 252, 0.25);
-    animation: squareRotate 10s linear infinite;
-}
-
-.square-1 {
-    width: 60px;
-    height: 60px;
-    top: 15%;
-    left: 10%;
-    animation-delay: 0s;
-}
-.square-2 {
-    width: 40px;
-    height: 40px;
-    bottom: 25%;
-    right: 15%;
-    animation-delay: 3s;
-    border-color: rgba(168, 85, 247, 0.3);
-}
-.square-3 {
-    width: 80px;
-    height: 80px;
-    top: 60%;
-    left: 70%;
-    animation-delay: 6s;
-    border-width: 1.5px;
-}
-
-@keyframes squareRotate {
-    from { transform: rotate(0deg); opacity: 0.2; }
-    to { transform: rotate(360deg); opacity: 0.5; }
-}
-
-/* 6. WAVY LINES (Baru) */
-.skills-wavy {
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(192, 132, 252, 0.2) 20px, rgba(192, 132, 252, 0.2) 40px);
-    animation: wavyMove 8s linear infinite;
-}
-
-.wavy-1 { top: 20%; transform: rotate(2deg); }
-.wavy-2 { top: 50%; transform: rotate(-1deg); animation-direction: reverse; }
-.wavy-3 { top: 80%; transform: rotate(1deg); animation-duration: 12s; }
-
-@keyframes wavyMove {
-    0% { background-position: 0 0; }
-    100% { background-position: 80px 0; }
-}
-
-/* 7. GLOWING ORBS (Baru) */
-.skills-glow-orb {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(192, 132, 252, 0.15), transparent);
-    animation: orbFloat 7s ease-in-out infinite;
-}
-
-.orb-1 {
-    width: 200px;
-    height: 200px;
-    top: 30%;
-    left: -50px;
-    animation-delay: 0s;
-}
-.orb-2 {
-    width: 150px;
-    height: 150px;
-    bottom: 10%;
-    right: -30px;
-    animation-delay: 3s;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.12), transparent);
-}
-.orb-3 {
-    width: 120px;
-    height: 120px;
-    top: 70%;
-    left: 40%;
-    animation-delay: 6s;
-}
-
 @keyframes orbFloat {
     0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
     50% { transform: translate(20px, -15px) scale(1.08); opacity: 0.6; }
 }
 
-/* 8. CROSS LINES (Baru) */
-.skills-cross {
-    position: absolute;
-    background: rgba(192, 132, 252, 0.1);
-}
+.grid-pattern { animation: gridMove 20s linear infinite; }
+.abstract-circle { animation: circlePulse 6s ease-in-out infinite; }
+.abstract-triangle { animation: triangleFloat 8s ease-in-out infinite; }
+.skills-dots { animation: skillsDotsMove 25s linear infinite; }
+.skills-glow-orb { animation: orbFloat 7s ease-in-out infinite; }
 
-.cross-h {
-    width: 100%;
-    height: 1px;
-    top: 30%;
-    left: 0;
-}
-.cross-v {
-    width: 1px;
-    height: 100%;
-    top: 0;
-    left: 70%;
-}
-.cross-h2 {
-    width: 100%;
-    height: 1px;
-    top: 70%;
-    left: 0;
-}
-.cross-v2 {
-    width: 1px;
-    height: 100%;
-    top: 0;
-    left: 30%;
-}
+/* Circle delays */
+.circle-big { animation-delay: 0s; }
+.circle-small { animation-delay: 2s; }
+.circle-mid { animation-delay: 4s; }
 
-/* ================= PROJECTS - ABSTRACT BACKGROUND (TIDAK BLUR) ================= */
+/* Triangle delays */
+.triangle-1 { animation-delay: 0s; }
+.triangle-2 { animation-delay: 2s; }
 
-.projects-bg-abstract {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
+/* Orb delays */
+.orb-1 { animation-delay: 0s; }
+.orb-2 { animation-delay: 3s; }
 
-/* 1. WAVES - Lebih jelas */
-.project-wave {
-    position: absolute;
-    width: 100%;
-    height: 80px;
-    background: repeating-linear-gradient(90deg, 
-        transparent 0px,
-        transparent 30px,
-        rgba(192, 132, 252, 0.15) 30px,
-        rgba(192, 132, 252, 0.15) 60px);
-    animation: waveMove 12s linear infinite;
-}
-
-.wave-1 { top: 5%; transform: rotate(1deg); }
-.wave-3 { bottom: 10%; transform: rotate(2deg); animation-duration: 15s; }
-
+/* ===== 12. PROJECTS - ABSTRACT BACKGROUND ===== */
 @keyframes waveMove {
     0% { background-position: 0 0; }
     100% { background-position: 120px 0; }
 }
-
-/* 2. SHAPES - Tidak blur, lebih jelas */
-.project-shape {
-    position: absolute;
-    opacity: 0.2;
-    animation: shapeFloat 10s ease-in-out infinite;
-}
-
-.shape-hexagon {
-    width: 60px;
-    height: 60px;
-    top: 12%;
-    right: 6%;
-    background: #c084fc;
-    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-    box-shadow: 0 0 10px rgba(192, 132, 252, 0.3);
-}
-
-.shape-diamond {
-    width: 45px;
-    height: 45px;
-    bottom: 15%;
-    left: 4%;
-    background: #a855f7;
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    box-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
-}
-
-.shape-cross {
-    width: 35px;
-    height: 35px;
-    top: 45%;
-    right: 12%;
-    background: #c084fc;
-    clip-path: polygon(20% 0%, 80% 0%, 80% 20%, 100% 20%, 100% 80%, 80% 80%, 80% 100%, 20% 100%, 20% 80%, 0% 80%, 0% 20%, 20% 20%);
-    box-shadow: 0 0 6px rgba(192, 132, 252, 0.3);
-}
-
 @keyframes shapeFloat {
     0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
     50% { transform: translateY(-15px) rotate(5deg); opacity: 0.3; }
 }
-
-/* 4. ORBS - Kurangi blur */
-.project-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(30px);
-    animation: orbPulse 6s ease-in-out infinite;
-}
-
-.orb-purple {
-    width: 250px;
-    height: 250px;
-    top: -80px;
-    left: -80px;
-    background: radial-gradient(circle, rgba(192, 132, 252, 0.2), transparent);
-}
-
-.orb-pink {
-    width: 200px;
-    height: 200px;
-    bottom: -60px;
-    right: -60px;
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.15), transparent);
-    animation-delay: 3s;
-}
-
 @keyframes orbPulse {
     0%, 100% { transform: scale(1); opacity: 0.4; }
     50% { transform: scale(1.08); opacity: 0.7; }
 }
-
-/* 5. DOTS PATTERN - Lebih jelas */
-.project-dots {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(rgba(192, 132, 252, 0.2) 1.5px, transparent 1.5px);
-    background-size: 35px 35px;
-    animation: dotsMove 25s linear infinite;
-}
-
 @keyframes dotsMove {
     0% { background-position: 0 0; }
     100% { background-position: 70px 70px; }
 }
 
-/* 6. CORNER ACCENTS - Lebih jelas */
-.corner-accent {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    opacity: 0.25;
-}
-
-.corner-accent.tl {
-    top: 20px;
-    left: 20px;
-    border-top: 2px solid #c084fc;
-    border-left: 2px solid #c084fc;
-}
-
-.corner-accent.br {
-    bottom: 20px;
-    right: 20px;
-    border-bottom: 2px solid #c084fc;
-    border-right: 2px solid #c084fc;
-}
-
+.project-wave { animation: waveMove 12s linear infinite; }
+.project-shape { animation: shapeFloat 10s ease-in-out infinite; }
+.project-orb { animation: orbPulse 6s ease-in-out infinite; }
+.project-dots { animation: dotsMove 25s linear infinite; }
