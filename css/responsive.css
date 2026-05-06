@@ -212,20 +212,6 @@
     .footer-bottom p { font-size: 0.75rem; }
     .footer-credit p { font-size: 0.7rem; }
 
-    /* Abstract Backgrounds - Mobile Kecil */
-    .grid-pattern { opacity: 0.5; animation: none; background-size: 25px 25px; }
-    .circle-big { width: 150px; height: 150px; top: -60px; right: -60px; }
-    .circle-mid { display: none; }
-    .circle-small { width: 80px; height: 80px; }
-    .triangle-1 { border-left: 35px solid transparent; border-right: 35px solid transparent; border-bottom: 60px solid #c084fc; }
-    .triangle-2 { border-left: 25px solid transparent; border-right: 25px solid transparent; border-top: 40px solid #a855f7; }
-    .triangle-3, .triangle-4 { display: none; }
-    .skills-dots { opacity: 0.4; animation: none; background-size: 15px 15px; }
-    .square-1, .square-2, .square-3 { display: none; }
-    .orb-1 { width: 80px; height: 80px; }
-    .orb-2 { width: 60px; height: 60px; }
-    .orb-3 { display: none; }
-    
     /* Projects Abstract - Mobile Kecil */
     .project-wave { display: none; }
     .shape-hexagon { width: 30px; height: 30px; top: 10%; right: 4%; }
