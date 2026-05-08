@@ -156,7 +156,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ==================== SKILLS OVERALL MASTERY ====================
 function updateOverallMastery() {
     // Web Developer
-    const webDev = document.querySelector('.skill-category:first-child');
+    const webDev = document.querySelector('.skill-category:nth-child(1)');
     if (webDev) {
         let total = 0, count = 0;
         webDev.querySelectorAll('.skill-item .skill-percent').forEach(el => {
@@ -167,7 +167,7 @@ function updateOverallMastery() {
             }
         });
         
-        const webTools = ['HTML', 'CSS', 'JavaScript', 'Laravel', 'Tailwind', 'PHP', 'SQL'];
+        const webTools = ['HTML', 'CSS', 'JavaScript', 'React', 'Laravel', 'PHP', 'SQL'];
         document.querySelectorAll('.tool-card').forEach(card => {
             const toolName = card.querySelector('.tool-name')?.textContent;
             const percentSpan = card.querySelector('.tool-percent span');
@@ -186,7 +186,7 @@ function updateOverallMastery() {
     }
     
     // Writer
-    const writer = document.querySelector('.skill-category:last-child');
+    const writer = document.querySelector('.skill-category:nth-child(2)');
     if (writer) {
         let total = 0, count = 0;
         writer.querySelectorAll('.skill-item .skill-percent').forEach(el => {
@@ -197,7 +197,7 @@ function updateOverallMastery() {
             }
         });
         
-        const writerTools = ['Wattpad', 'Wizpen', 'MS Word'];
+        const writerTools = ['Wattpad', 'Wizpen', 'MS Office'];
         document.querySelectorAll('.tool-card').forEach(card => {
             const toolName = card.querySelector('.tool-name')?.textContent;
             const percentSpan = card.querySelector('.tool-percent span');
@@ -210,6 +210,36 @@ function updateOverallMastery() {
         const avg = Math.round(total / count);
         const overallPercent = writer.querySelector('.overall-percent');
         const overallFill = writer.querySelector('.overall-progress-fill');
+        
+        if (overallPercent) overallPercent.textContent = avg + '%';
+        if (overallFill) overallFill.style.width = avg + '%';
+    }
+    
+    // Designer
+    const designer = document.querySelector('.skill-category:nth-child(3)');
+    if (designer) {
+        let total = 0, count = 0;
+        designer.querySelectorAll('.skill-item .skill-percent').forEach(el => {
+            const percent = parseInt(el.textContent);
+            if (!isNaN(percent)) {
+                total += percent;
+                count++;
+            }
+        });
+        
+        const designTools = ['Figma', 'Pixelab', 'Picsart', 'Canva'];
+        document.querySelectorAll('.tool-card').forEach(card => {
+            const toolName = card.querySelector('.tool-name')?.textContent;
+            const percentSpan = card.querySelector('.tool-percent span');
+            if (designTools.includes(toolName) && percentSpan) {
+                total += parseInt(percentSpan.textContent) || 0;
+                count++;
+            }
+        });
+        
+        const avg = Math.round(total / count);
+        const overallPercent = designer.querySelector('.overall-percent');
+        const overallFill = designer.querySelector('.overall-progress-fill');
         
         if (overallPercent) overallPercent.textContent = avg + '%';
         if (overallFill) overallFill.style.width = avg + '%';
@@ -328,9 +358,7 @@ if (filterBtns.length) {
     });
 }
 
-// ==================== CERTIFICATES MODAL FUNCTIONS (panggil dari sertifikat.js) ====================
-// Fungsi-fungsi ini akan di-override oleh sertifikat.js
-// Pastikan sertifikat.js di-load SETELAH script.js
+// ==================== CERTIFICATES MODAL FUNCTIONS ====================
 window.openAllCerts = window.openAllCerts || function() {
     console.warn('sertifikat.js not loaded yet');
 };
@@ -366,6 +394,12 @@ document.addEventListener('keydown', (e) => {
 // ==================== INITIALIZE ====================
 document.addEventListener('DOMContentLoaded', () => {
     updateOverallMastery();
+    
+    // Panggil updateOverallMastery lagi setelah sertifikat.js load
+    setTimeout(() => {
+        updateOverallMastery();
+    }, 500);
+    
     const loadingOverlay = document.getElementById('loadingOverlay');
     if (loadingOverlay) {
         setTimeout(() => {
@@ -378,10 +412,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==================== ABOUT MODAL STYLE FIX ====================
-// Pastikan modal about menggunakan display flex saat active
 if (dom.aboutModal) {
-    const originalOpen = dom.readMoreBtn?.onclick;
-    if (dom.readMoreBtn && !originalOpen) {
+    if (dom.readMoreBtn && !dom.readMoreBtn.onclick) {
         dom.readMoreBtn.addEventListener('click', () => {
             dom.aboutModal.style.display = 'flex';
         });
