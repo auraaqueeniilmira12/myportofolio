@@ -18,7 +18,13 @@ let tickingNav = false;
 window.addEventListener('scroll', () => {
     if (!tickingNav) {
         requestAnimationFrame(() => {
-            dom.navbar?.classList[window.scrollY > 50 ? 'add' : 'remove']('scrolled');
+            if (dom.navbar) {
+                if (window.scrollY > 50) {
+                    dom.navbar.classList.add('scrolled');
+                } else {
+                    dom.navbar.classList.remove('scrolled');
+                }
+            }
             tickingNav = false;
         });
         tickingNav = true;
@@ -30,8 +36,10 @@ if (dom.hamburger && dom.mobileMenu) {
     const toggleMenu = () => {
         dom.mobileMenu.classList.toggle('active');
         const icon = dom.hamburger.querySelector('i');
-        icon?.classList.toggle('fa-bars');
-        icon?.classList.toggle('fa-times');
+        if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
     };
     
     dom.hamburger.addEventListener('click', toggleMenu);
@@ -39,15 +47,22 @@ if (dom.hamburger && dom.mobileMenu) {
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
         link.addEventListener('click', () => {
             dom.mobileMenu.classList.remove('active');
-            dom.hamburger.querySelector('i')?.classList.add('fa-bars');
-            dom.hamburger.querySelector('i')?.classList.remove('fa-times');
+            const icon = dom.hamburger.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
         });
     });
     
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768 && dom.mobileMenu.classList.contains('active')) {
             dom.mobileMenu.classList.remove('active');
-            dom.hamburger.querySelector('i')?.classList.add('fa-bars');
+            const icon = dom.hamburger.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
         }
     });
 }
@@ -77,12 +92,12 @@ if (starContainer) {
 // ==================== READ MORE MODAL ====================
 if (dom.readMoreBtn && dom.aboutModal && dom.closeModalBtn) {
     const openModal = () => {
-        dom.aboutModal.classList.add('active');
+        dom.aboutModal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     };
     
     const closeModal = () => {
-        dom.aboutModal.classList.remove('active');
+        dom.aboutModal.style.display = 'none';
         document.body.style.overflow = '';
     };
     
@@ -97,10 +112,8 @@ if (dom.readMoreBtn && dom.aboutModal && dom.closeModalBtn) {
 if (dom.backToTop) {
     const toggleBackToTop = () => {
         const isVisible = window.scrollY > 500;
-        dom.backToTop.style.cssText = `
-            opacity: ${isVisible ? '1' : '0'};
-            visibility: ${isVisible ? 'visible' : 'hidden'};
-        `;
+        dom.backToTop.style.opacity = isVisible ? '1' : '0';
+        dom.backToTop.style.visibility = isVisible ? 'visible' : 'hidden';
     };
     
     dom.backToTop.addEventListener('click', () => {
@@ -118,7 +131,9 @@ const revealElements = document.querySelectorAll(
 const revealObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('in-view');
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            }
         });
     },
     { threshold: 0.1, rootMargin: '50px' }
@@ -128,7 +143,9 @@ revealElements.forEach(el => revealObserver.observe(el));
 // ==================== SMOOTH SCROLL ====================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
         if (target) {
             e.preventDefault();
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -144,7 +161,10 @@ function updateOverallMastery() {
         let total = 0, count = 0;
         webDev.querySelectorAll('.skill-item .skill-percent').forEach(el => {
             const percent = parseInt(el.textContent);
-            if (!isNaN(percent)) { total += percent; count++; }
+            if (!isNaN(percent)) {
+                total += percent;
+                count++;
+            }
         });
         
         const webTools = ['HTML', 'CSS', 'JavaScript', 'Laravel', 'Tailwind', 'PHP', 'SQL'];
@@ -171,7 +191,10 @@ function updateOverallMastery() {
         let total = 0, count = 0;
         writer.querySelectorAll('.skill-item .skill-percent').forEach(el => {
             const percent = parseInt(el.textContent);
-            if (!isNaN(percent)) { total += percent; count++; }
+            if (!isNaN(percent)) {
+                total += percent;
+                count++;
+            }
         });
         
         const writerTools = ['Wattpad', 'Wizpen', 'MS Word'];
@@ -249,9 +272,9 @@ document.querySelectorAll('.project-btn').forEach(btn => {
         }
         
         if (modalLink) {
-            modalLink.style.cssText = btn.getAttribute('data-link') === '#'
-                ? 'opacity: 0.5; pointer-events: none'
-                : 'opacity: 1; pointer-events: auto';
+            const isDisabled = btn.getAttribute('data-link') === '#';
+            modalLink.style.opacity = isDisabled ? '0.5' : '1';
+            modalLink.style.pointerEvents = isDisabled ? 'none' : 'auto';
         }
         
         if (projectModal) {
@@ -261,16 +284,16 @@ document.querySelectorAll('.project-btn').forEach(btn => {
     });
 });
 
-const closeModal = () => {
+const closeProjectModal = () => {
     if (projectModal) {
         projectModal.classList.remove('active');
         document.body.style.overflow = '';
     }
 };
 
-if (dom.closeProjectModal) dom.closeProjectModal.addEventListener('click', closeModal);
+if (dom.closeProjectModal) dom.closeProjectModal.addEventListener('click', closeProjectModal);
 if (projectModal) projectModal.addEventListener('click', (e) => {
-    if (e.target === projectModal) closeModal();
+    if (e.target === projectModal) closeProjectModal();
 });
 
 const changeSlide = (direction) => {
@@ -295,95 +318,48 @@ if (filterBtns.length) {
             
             projectCards.forEach(card => {
                 const cat = card.getAttribute('data-category');
-                card.classList.toggle('hide', filter !== 'all' && !cat.includes(filter));
-            });
-        });
-    });
-}
-
-// ==================== CERTIFICATES MODAL ====================
-window.openAllCerts = function() {
-    if (dom.certOverlay) {
-        dom.certOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        generateCertDots();
-    }
-};
-
-window.closeCertModal = function() {
-    if (dom.certOverlay) {
-        dom.certOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-};
-
-window.openCertModal = function(index) {
-    openAllCerts();
-    const track = document.getElementById('certScrollTrack');
-    if (!track) return;
-    const slides = track.querySelectorAll('.cert-slide');
-    if (slides[index]) {
-        setTimeout(() => {
-            slides[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }, 150);
-    }
-};
-
-window.scrollCerts = function(direction) {
-    const track = document.getElementById('certScrollTrack');
-    if (!track) return;
-    const slideWidth = track.querySelector('.cert-slide')?.offsetWidth || track.offsetWidth;
-    track.scrollBy({ left: direction === 'right' ? slideWidth : -slideWidth, behavior: 'smooth' });
-};
-
-function generateCertDots() {
-    const track = document.getElementById('certScrollTrack');
-    const dotsContainer = document.getElementById('certDots');
-    if (!track || !dotsContainer) return;
-    
-    const slides = track.querySelectorAll('.cert-slide');
-    if (slides.length === 0) return;
-    
-    dotsContainer.innerHTML = '';
-    
-    slides.forEach((_, i) => {
-        const dot = document.createElement('span');
-        dot.classList.add('cert-dot');
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-            slides[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        });
-        dotsContainer.appendChild(dot);
-    });
-    
-    let scrollTimer;
-    track.addEventListener('scroll', () => {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => {
-            const containerRect = track.getBoundingClientRect();
-            let activeIndex = 0;
-            slides.forEach((slide, i) => {
-                const slideRect = slide.getBoundingClientRect();
-                if (slideRect.left >= containerRect.left && slideRect.left < containerRect.right) {
-                    activeIndex = i;
+                if (filter === 'all' || (cat && cat.includes(filter))) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
                 }
             });
-            dotsContainer.querySelectorAll('.cert-dot').forEach((dot, i) => {
-                dot.classList.toggle('active', i === activeIndex);
-            });
-        }, 50);
+        });
     });
 }
+
+// ==================== CERTIFICATES MODAL FUNCTIONS (panggil dari sertifikat.js) ====================
+// Fungsi-fungsi ini akan di-override oleh sertifikat.js
+// Pastikan sertifikat.js di-load SETELAH script.js
+window.openAllCerts = window.openAllCerts || function() {
+    console.warn('sertifikat.js not loaded yet');
+};
+window.closeCertModal = window.closeCertModal || function() {
+    console.warn('sertifikat.js not loaded yet');
+};
+window.openCertModal = window.openCertModal || function(index) {
+    console.warn('sertifikat.js not loaded yet');
+};
+window.scrollCerts = window.scrollCerts || function(direction) {
+    console.warn('sertifikat.js not loaded yet');
+};
 
 // ==================== KEYBOARD NAVIGATION ====================
 document.addEventListener('keydown', (e) => {
-    if (dom.certOverlay && dom.certOverlay.classList.contains('active')) {
-        if (e.key === 'Escape') closeCertModal();
-        if (e.key === 'ArrowRight') scrollCerts('right');
-        if (e.key === 'ArrowLeft') scrollCerts('left');
+    const certOverlay = document.getElementById('certModalOverlay');
+    if (certOverlay && certOverlay.classList.contains('active')) {
+        if (e.key === 'Escape') {
+            if (typeof closeCertModal === 'function') closeCertModal();
+        }
+        if (e.key === 'ArrowRight') {
+            if (typeof scrollCerts === 'function') scrollCerts('right');
+        }
+        if (e.key === 'ArrowLeft') {
+            if (typeof scrollCerts === 'function') scrollCerts('left');
+        }
     }
     if (projectModal && projectModal.classList.contains('active') && e.key === 'Escape') {
-        closeModal();
+        closeProjectModal();
     }
 });
 
@@ -392,6 +368,22 @@ document.addEventListener('DOMContentLoaded', () => {
     updateOverallMastery();
     const loadingOverlay = document.getElementById('loadingOverlay');
     if (loadingOverlay) {
-        loadingOverlay.style.display = 'none';
+        setTimeout(() => {
+            loadingOverlay.style.opacity = '0';
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+            }, 300);
+        }, 500);
     }
 });
+
+// ==================== ABOUT MODAL STYLE FIX ====================
+// Pastikan modal about menggunakan display flex saat active
+if (dom.aboutModal) {
+    const originalOpen = dom.readMoreBtn?.onclick;
+    if (dom.readMoreBtn && !originalOpen) {
+        dom.readMoreBtn.addEventListener('click', () => {
+            dom.aboutModal.style.display = 'flex';
+        });
+    }
+}
