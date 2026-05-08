@@ -135,7 +135,7 @@ const certificatesData = [
 
     // ===== PUSPRESNAS (SISA) =====
     {
-        img: "images/Sertifikat Peserta FSBN PAI 2025.jpg",
+        img: "images/Peserta FSBN PAI 2025.jpg",
         date: "July 2025",
         title: "FSBN Participant - Islamic Education",
         desc: "Participated in FSBN for Islamic Education (PAI) subject.",
@@ -262,14 +262,6 @@ const certificatesData = [
         issuer: "SMKN 1 Ciomas",
         link: "https://drive.google.com/file/d/1mqdosmiGqlablp426DTRm8IR90nxA2cQ/view?usp=drive_link"
     },
-    {
-        img: "images/Sertifikat Peserta Cinematography 2023 eskul mts darul.jpeg",
-        date: "2023",
-        title: "Cinematography Participant - Extracurricular",
-        desc: "Participated in cinematography activity as part of extracurricular program.",
-        issuer: "MTS Darul Ihya",
-        link: "#"
-    }
 ];
 
 // ========== RENDER CERTIFICATES ==========
