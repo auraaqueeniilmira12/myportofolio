@@ -19,11 +19,8 @@ window.addEventListener('scroll', () => {
     if (!tickingNav) {
         requestAnimationFrame(() => {
             if (dom.navbar) {
-                if (window.scrollY > 50) {
-                    dom.navbar.classList.add('scrolled');
-                } else {
-                    dom.navbar.classList.remove('scrolled');
-                }
+                if (window.scrollY > 50) dom.navbar.classList.add('scrolled');
+                else dom.navbar.classList.remove('scrolled');
             }
             tickingNav = false;
         });
@@ -72,16 +69,13 @@ const starContainer = document.getElementById('cosmicStars');
 if (starContainer) {
     const starCount = Math.min(80, Math.floor(window.innerWidth / 20));
     starContainer.innerHTML = '';
-    
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
         star.classList.add('cosmic-star');
         const size = Math.random() * 2 + 0.5;
         star.style.cssText = `
-            width: ${size}px;
-            height: ${size}px;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
+            width: ${size}px; height: ${size}px;
+            left: ${Math.random() * 100}%; top: ${Math.random() * 100}%;
             animation-delay: ${Math.random() * 4}s;
             animation-duration: ${Math.random() * 3 + 2}s;
         `;
@@ -95,12 +89,10 @@ if (dom.readMoreBtn && dom.aboutModal && dom.closeModalBtn) {
         dom.aboutModal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     };
-    
     const closeModal = () => {
         dom.aboutModal.style.display = 'none';
         document.body.style.overflow = '';
     };
-    
     dom.readMoreBtn.addEventListener('click', openModal);
     dom.closeModalBtn.addEventListener('click', closeModal);
     dom.aboutModal.addEventListener('click', (e) => {
@@ -115,11 +107,9 @@ if (dom.backToTop) {
         dom.backToTop.style.opacity = isVisible ? '1' : '0';
         dom.backToTop.style.visibility = isVisible ? 'visible' : 'hidden';
     };
-    
     dom.backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    
     window.addEventListener('scroll', toggleBackToTop);
     toggleBackToTop();
 }
@@ -128,16 +118,11 @@ if (dom.backToTop) {
 const revealElements = document.querySelectorAll(
     '.skill-category, .project-card, .contact-form-box, .contact-info-box, .footer-column'
 );
-const revealObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-            }
-        });
-    },
-    { threshold: 0.1, rootMargin: '50px' }
-);
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+    });
+}, { threshold: 0.1, rootMargin: '50px' });
 revealElements.forEach(el => revealObserver.observe(el));
 
 // ==================== SMOOTH SCROLL ====================
@@ -155,18 +140,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // ==================== SKILLS OVERALL MASTERY ====================
 function updateOverallMastery() {
-    // Web Developer
     const webDev = document.querySelector('.skill-category:nth-child(1)');
     if (webDev) {
         let total = 0, count = 0;
         webDev.querySelectorAll('.skill-item .skill-percent').forEach(el => {
             const percent = parseInt(el.textContent);
-            if (!isNaN(percent)) {
-                total += percent;
-                count++;
-            }
+            if (!isNaN(percent)) { total += percent; count++; }
         });
-        
         const webTools = ['HTML', 'CSS', 'JavaScript', 'React', 'Laravel', 'PHP', 'SQL'];
         document.querySelectorAll('.tool-card').forEach(card => {
             const toolName = card.querySelector('.tool-name')?.textContent;
@@ -176,27 +156,20 @@ function updateOverallMastery() {
                 count++;
             }
         });
-        
         const avg = Math.round(total / count);
         const overallPercent = webDev.querySelector('.overall-percent');
         const overallFill = webDev.querySelector('.overall-progress-fill');
-        
         if (overallPercent) overallPercent.textContent = avg + '%';
         if (overallFill) overallFill.style.width = avg + '%';
     }
     
-    // Writer
     const writer = document.querySelector('.skill-category:nth-child(2)');
     if (writer) {
         let total = 0, count = 0;
         writer.querySelectorAll('.skill-item .skill-percent').forEach(el => {
             const percent = parseInt(el.textContent);
-            if (!isNaN(percent)) {
-                total += percent;
-                count++;
-            }
+            if (!isNaN(percent)) { total += percent; count++; }
         });
-        
         const writerTools = ['Wattpad', 'Wizpen', 'MS Office'];
         document.querySelectorAll('.tool-card').forEach(card => {
             const toolName = card.querySelector('.tool-name')?.textContent;
@@ -206,27 +179,20 @@ function updateOverallMastery() {
                 count++;
             }
         });
-        
         const avg = Math.round(total / count);
         const overallPercent = writer.querySelector('.overall-percent');
         const overallFill = writer.querySelector('.overall-progress-fill');
-        
         if (overallPercent) overallPercent.textContent = avg + '%';
         if (overallFill) overallFill.style.width = avg + '%';
     }
     
-    // Designer
     const designer = document.querySelector('.skill-category:nth-child(3)');
     if (designer) {
         let total = 0, count = 0;
         designer.querySelectorAll('.skill-item .skill-percent').forEach(el => {
             const percent = parseInt(el.textContent);
-            if (!isNaN(percent)) {
-                total += percent;
-                count++;
-            }
+            if (!isNaN(percent)) { total += percent; count++; }
         });
-        
         const designTools = ['Figma', 'Pixelab', 'Picsart', 'Canva'];
         document.querySelectorAll('.tool-card').forEach(card => {
             const toolName = card.querySelector('.tool-name')?.textContent;
@@ -236,11 +202,9 @@ function updateOverallMastery() {
                 count++;
             }
         });
-        
         const avg = Math.round(total / count);
         const overallPercent = designer.querySelector('.overall-percent');
         const overallFill = designer.querySelector('.overall-progress-fill');
-        
         if (overallPercent) overallPercent.textContent = avg + '%';
         if (overallFill) overallFill.style.width = avg + '%';
     }
@@ -335,6 +299,21 @@ const changeSlide = (direction) => {
 if (prevSlide) prevSlide.addEventListener('click', () => changeSlide(-1));
 if (nextSlide) nextSlide.addEventListener('click', () => changeSlide(1));
 
+// ==================== PROJECTS SLIDER (TOMbol GESER KIRI KANAN) ====================
+const projectsGrid = document.getElementById('projectsGrid');
+const prevProjectBtn = document.getElementById('prevProjectBtn');
+const nextProjectBtn = document.getElementById('nextProjectBtn');
+
+if (projectsGrid && prevProjectBtn && nextProjectBtn) {
+    prevProjectBtn.addEventListener('click', () => {
+        projectsGrid.scrollBy({ left: -350, behavior: 'smooth' });
+    });
+    
+    nextProjectBtn.addEventListener('click', () => {
+        projectsGrid.scrollBy({ left: 350, behavior: 'smooth' });
+    });
+}
+
 // ==================== PROJECTS FILTER ====================
 const filterBtns = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
@@ -345,7 +324,6 @@ if (filterBtns.length) {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             const filter = btn.getAttribute('data-filter');
-            
             projectCards.forEach(card => {
                 const cat = card.getAttribute('data-category');
                 if (filter === 'all' || (cat && cat.includes(filter))) {
@@ -394,12 +372,9 @@ document.addEventListener('keydown', (e) => {
 // ==================== INITIALIZE ====================
 document.addEventListener('DOMContentLoaded', () => {
     updateOverallMastery();
-    
-    // Panggil updateOverallMastery lagi setelah sertifikat.js load
     setTimeout(() => {
         updateOverallMastery();
     }, 500);
-    
     const loadingOverlay = document.getElementById('loadingOverlay');
     if (loadingOverlay) {
         setTimeout(() => {
@@ -412,10 +387,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==================== ABOUT MODAL STYLE FIX ====================
-if (dom.aboutModal) {
-    if (dom.readMoreBtn && !dom.readMoreBtn.onclick) {
-        dom.readMoreBtn.addEventListener('click', () => {
-            dom.aboutModal.style.display = 'flex';
-        });
-    }
+if (dom.aboutModal && dom.readMoreBtn && !dom.readMoreBtn.onclick) {
+    dom.readMoreBtn.addEventListener('click', () => {
+        dom.aboutModal.style.display = 'flex';
+    });
 }

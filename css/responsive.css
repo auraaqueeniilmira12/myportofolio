@@ -3,14 +3,12 @@
 
 /* ===== FIX OVERFLOW & FULL WIDTH UNTUK SEMUA MOBILE ===== */
 @media (max-width: 768px) {
-    /* Paksa ga bisa scroll horizontal */
     html, body {
-        overflow-x: hidden !important;
-        width: 100% !important;
-        position: relative !important;
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
     }
     
-    /* Semua kontainer harus penuh */
     .skills-bg-abstract,
     .about-bg-abstract,
     .projects-bg-abstract,
@@ -30,14 +28,28 @@
         box-sizing: border-box !important;
     }
     
-    /* Fix semua section */
     section, footer, .hero {
         width: 100% !important;
         overflow-x: hidden !important;
         position: relative !important;
     }
-    
-    /* Fix elemen absolut yang meluber */
+
+    /* ===== FIX HERO SCROLL VERTIKAL ===== */
+    .hero {
+        overflow: hidden !important;
+    }
+
+    .cosmic-nebula {
+        position: absolute !important;
+        height: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .planet-ring {
+        position: absolute !important;
+        overflow: hidden !important;
+    }
+
     .cosmic-nebula,
     .planet-ring,
     .alien-horizon,
@@ -45,12 +57,14 @@
     .blackhole,
     .cosmic-mist,
     .satellite-orbit,
-    .dimension-portal {
+    .dimension-portal,
+    .cosmic-stars,
+    .meteor-purple {
         overflow: hidden !important;
         max-width: 100vw !important;
+        max-height: 100vh !important;
     }
     
-    /* Semua padding harus ikut */
     .nav-container,
     .hero-container,
     .about-container,
@@ -64,15 +78,13 @@
     }
 }
 
-/* ===== KHUSUS HP LEBAR 360px - 430px (SAMSUNG A04E) ===== */
+/* ===== KHUSUS HP LEBAR 360px - 430px ===== */
 @media (max-width: 430px) {
-    /* Pastikan body ga bisa di-scroll horizontal */
     body {
         overflow-x: hidden !important;
         width: 100% !important;
     }
     
-    /* Container utama pake padding lebih kecil */
     .hero-container,
     .about-container,
     .skills-container,
@@ -87,13 +99,11 @@
         box-sizing: border-box !important;
     }
     
-    /* Navbar di HP */
     .nav-container {
         padding-left: 15px !important;
         padding-right: 15px !important;
     }
     
-    /* Hamburger menu harus keliatan */
     .hamburger {
         display: block !important;
         z-index: 10001 !important;
@@ -104,7 +114,6 @@
         display: none !important;
     }
     
-    /* Mobile menu harus penuh */
     .mobile-menu {
         width: 100% !important;
         left: 0 !important;
@@ -115,9 +124,8 @@
         padding: 15px !important;
     }
     
-    /* Hero section - title lebih kecil */
     .hero-title {
-        font-size: 1.4rem !important;
+        font-size: 1.6rem !important;
         white-space: normal !important;
         display: block !important;
         border-right: none !important;
@@ -127,7 +135,7 @@
     }
     
     .hero-desc {
-        font-size: 0.8rem !important;
+        font-size: 0.85rem !important;
         text-align: justify !important;
         padding-left: 10px !important;
         padding-right: 10px !important;
@@ -138,7 +146,6 @@
         margin: 0 auto !important;
     }
     
-    /* About section - grid jadi 1 kolom */
     .about-container {
         grid-template-columns: 1fr !important;
         text-align: center !important;
@@ -156,7 +163,6 @@
         gap: 12px !important;
     }
     
-    /* Skills section - tool card scroll horizontal aman */
     .tools-grid {
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch !important;
@@ -164,17 +170,6 @@
         padding: 10px !important;
     }
     
-    /* Projects section - grid 1 kolom */
-    .projects-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
-    
-    .project-card {
-        margin: 0 10px !important;
-    }
-    
-    /* Filter button - wrap biar ga meluber */
     .projects-filter {
         flex-wrap: wrap !important;
         gap: 8px !important;
@@ -186,7 +181,6 @@
         font-size: 0.7rem !important;
     }
     
-    /* Contact section */
     .contact-wrapper {
         flex-direction: column !important;
         gap: 20px !important;
@@ -198,7 +192,6 @@
         margin: 0 10px !important;
     }
     
-    /* Footer */
     .footer-links {
         flex-direction: column !important;
         align-items: center !important;
@@ -214,7 +207,6 @@
         transform: translateX(-50%) !important;
     }
     
-    /* Back to top button harus keliatan dan ga ketutup */
     .back-to-top {
         right: 15px !important;
         bottom: 15px !important;
@@ -223,14 +215,12 @@
         font-size: 1rem !important;
         z-index: 999 !important;
     }
-    
-
 }
 
-/* ===== KHUSUS HP SANGAT KECIL (max-width: 360px) ===== */
+/* ===== KHUSUS HP SANGAT KECIL ===== */
 @media (max-width: 360px) {
     .hero-title {
-        font-size: 1.2rem !important;
+        font-size: 1.4rem !important;
     }
     
     .hero-desc {
@@ -264,9 +254,8 @@
     }
 }
 
-/* ===== TABLET & MOBILE (max-width: 768px) ===== */
+/* ===== TABLET & MOBILE ===== */
 @media (max-width: 768px) {
-    /* Navbar */
     .hamburger { display: block; }
     .nav-menu { display: none; }
     .nav-container { padding: 0 1.5rem; }
@@ -274,8 +263,7 @@
     .navbar.scrolled { background: rgba(5, 3, 10, 0.95); backdrop-filter: blur(15px); }
     .mobile-menu { backdrop-filter: blur(20px); background: rgba(10, 5, 21, 0.9); }
     .mobile-nav-link { font-size: 1.1rem; font-weight: 500; color: #fff; }
-
-    /* Hero */
+    
     .hero { padding: 100px 5% 60px; min-height: auto; }
     .hero-container { flex-direction: column-reverse; text-align: center; gap: 35px; }
     .hero-left { text-align: center; min-width: 100%; }
@@ -287,8 +275,7 @@
     .role-text { font-size: 1rem; padding-left: 25px; }
     .btn-outline { padding: 10px 24px; font-size: 0.9rem; }
     .social-icon { width: 38px; height: 38px; font-size: 1rem; }
-
-    /* About */
+    
     .about { padding: 60px 5%; }
     .about-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
     .about-title { font-size: 1.8rem; }
@@ -298,8 +285,7 @@
     .about-buttons { justify-content: center; }
     .about-image { max-width: 260px; }
     .btn-readmore, .btn-download { padding: 8px 22px; font-size: 0.75rem; }
-
-    /* Skills */
+    
     .skills { padding: 80px 5%; }
     .skills-title { font-size: 1.8rem; }
     .skills-categories { flex-direction: column; gap: 30px; }
@@ -311,15 +297,12 @@
     .tool-card { min-width: 140px; padding: 15px 12px; }
     .tool-icon { font-size: 2rem; }
     .tool-name { font-size: 0.85rem; }
-
-    /* Projects */
-    .projects-grid { grid-template-columns: 1fr; }
+    
+    .projects { padding: 80px 5%; }
     .projects-title { font-size: 1.8rem; }
-    .project-buttons { flex-direction: column; }
     .projects-filter { gap: 12px; margin-bottom: 35px; }
     .filter-btn { padding: 6px 18px; font-size: 0.8rem; }
-
-    /* Contact */
+    
     .contact { padding: 80px 5%; }
     .contact-wrapper { flex-direction: column; gap: 30px; }
     .contact-title { font-size: 1.8rem; }
@@ -332,8 +315,7 @@
     .info-icon i { font-size: 1rem; }
     .info-content p { font-size: 0.8rem; }
     .social-links a { font-size: 0.8rem; }
-
-    /* Footer */
+    
     .footer { margin-top: 50px; }
     .footer-container { padding: 60px 5% 40px; }
     .back-to-top { right: 5%; width: 45px; height: 45px; font-size: 1.1rem; top: -22px; }
@@ -346,46 +328,37 @@
     .footer-column ul li a { justify-content: center; }
     .footer-bottom { flex-direction: column; text-align: center; gap: 15px; padding-top: 25px; }
     .footer-credit p { justify-content: center; }
-    
-    /* Global Cosmetics */
-    .square-1, .square-2, .square-3 { width: 40px; height: 40px; }
-    .skills-wavy { display: none; }
 }
 
-/* ===== MOBILE KECIL (max-width: 480px) ===== */
+/* ===== MOBILE KECIL ===== */
 @media (max-width: 480px) {
-    /* Navbar */
     .nav-container { padding: 0 1rem; }
     .nav-logo a { font-size: 1.1rem; }
     .hamburger { font-size: 1.3rem; }
     .mobile-menu-container { padding: 1rem 1.5rem; }
     .mobile-nav-link { font-size: 1rem; padding: 0.8rem 0; }
-
-    /* Hero */
+    
     .hero { padding: 80px 5% 40px; }
     .hero-title { font-size: 1.6rem; }
-    .hero-desc { font-size: 0.85rem; padding-left: 12px; }
-    .btn-outline { padding: 8px 20px; font-size: 0.85rem; }
+    .hero-desc { font-size: 0.8rem; padding-left: 12px; }
+    .btn-outline { padding: 8px 20px; font-size: 0.8rem; }
     .social-icon { width: 35px; height: 35px; font-size: 0.9rem; }
     .hero-image { max-width: 220px; }
     .role-text { font-size: 0.9rem; padding-left: 20px; }
-
-    /* About */
+    
     .about { padding: 50px 4%; }
     .about-title { font-size: 1.5rem; }
-    .about-desc { font-size: 0.85rem; }
-    .info-label { min-width: 65px; font-size: 0.8rem; }
-    .info-value { font-size: 0.8rem; }
+    .about-desc { font-size: 0.8rem; }
+    .info-label { min-width: 65px; font-size: 0.75rem; }
+    .info-value { font-size: 0.75rem; }
     .about-buttons { flex-direction: column; align-items: center; gap: 12px; }
     .btn-readmore, .btn-download { padding: 8px 24px; width: 100%; max-width: 200px; }
     .about-image { max-width: 220px; }
     
-    /* Modal About */
     .modal-content { max-width: 95%; margin: 20px; }
     .modal-header h2 { font-size: 1.3rem; }
     .modal-body p { font-size: 0.85rem; }
-
-    /* Skills */
+    
     .skills { padding: 60px 4%; }
     .skills-title { font-size: 1.5rem; }
     .category-title { font-size: 1.1rem; }
@@ -395,19 +368,17 @@
     .tool-icon { font-size: 1.8rem; }
     .tool-name { font-size: 0.75rem; }
     .tool-percent span { font-size: 0.6rem; padding: 1px 5px; }
-
-    /* Projects */
+    
     .projects { padding: 60px 4%; }
     .projects-title { font-size: 1.5rem; }
-    .projects-subtitle { font-size: 0.85rem; }
+    .projects-subtitle { font-size: 0.8rem; }
     .projects-filter { gap: 8px; margin-bottom: 25px; }
     .filter-btn { padding: 5px 14px; font-size: 0.7rem; }
     .project-info h3 { font-size: 1rem; }
-    .project-info p { font-size: 0.8rem; }
+    .project-info p { font-size: 0.75rem; }
     .project-tech span { font-size: 0.65rem; padding: 3px 10px; }
-    .project-visit, .project-btn { padding: 8px; font-size: 0.75rem; }
+    .project-visit, .project-btn { padding: 8px; font-size: 0.7rem; }
     
-    /* Modal Projects */
     .project-modal .modal-header h2 { font-size: 1.1rem; }
     .project-modal .modal-body { padding: 18px; }
     .modal-slider img { height: 180px; }
@@ -416,41 +387,39 @@
     .modal-tech-list span { font-size: 0.65rem; padding: 3px 10px; }
     .modal-buttons { flex-direction: column; gap: 10px; }
     .modal-btn { text-align: center; padding: 8px 16px; font-size: 0.75rem; }
-
-    /* Contact */
+    
     .contact { padding: 60px 4%; }
     .contact-title { font-size: 1.5rem; }
     .contact-badge { font-size: 0.7rem; letter-spacing: 2px; }
-    .contact-subtitle { font-size: 0.75rem; }
+    .contact-subtitle { font-size: 0.7rem; }
     .contact-wrapper { gap: 25px; }
     .contact-form-box, .contact-info-box { padding: 20px; }
     .form-group { margin-bottom: 18px; }
-    .form-group input, .form-group textarea { padding: 10px 14px 10px 40px; font-size: 0.8rem; }
+    .form-group input, .form-group textarea { padding: 10px 14px 10px 40px; font-size: 0.75rem; }
     .input-icon { left: 12px; }
     .input-icon i { font-size: 0.8rem; }
-    .submit-btn { padding: 10px; font-size: 0.8rem; }
+    .submit-btn { padding: 10px; font-size: 0.75rem; }
     .info-block { gap: 12px; margin-bottom: 20px; }
     .info-icon { width: 35px; height: 35px; }
     .info-icon i { font-size: 0.9rem; }
     .info-content h3 { font-size: 0.7rem; letter-spacing: 1px; }
-    .info-content p { font-size: 0.75rem; }
-    .social-links a { font-size: 0.75rem; gap: 8px; }
+    .info-content p { font-size: 0.7rem; }
+    .social-links a { font-size: 0.7rem; gap: 8px; }
     .social-links a i { font-size: 0.8rem; width: 18px; }
-
-    /* Footer */
+    
     .footer { margin-top: 40px; }
     .footer-container { padding: 50px 4% 30px; }
     .back-to-top { right: 4%; width: 38px; height: 38px; font-size: 0.9rem; top: -19px; }
     .footer-content { gap: 30px; margin-bottom: 30px; }
     .footer-logo { font-size: 1.6rem; }
     .footer-tagline { font-size: 0.85rem; }
-    .footer-desc { font-size: 0.8rem; }
+    .footer-desc { font-size: 0.75rem; }
     .footer-links { gap: 30px; flex-direction: column; align-items: center; }
     .footer-column h3 { font-size: 0.95rem; margin-bottom: 15px; }
     .footer-column ul li { margin-bottom: 10px; }
-    .footer-column ul li a { font-size: 0.8rem; }
-    .footer-bottom p { font-size: 0.75rem; }
-    .footer-credit p { font-size: 0.7rem; }
+    .footer-column ul li a { font-size: 0.75rem; }
+    .footer-bottom p { font-size: 0.7rem; }
+    .footer-credit p { font-size: 0.65rem; }
 }
 
 /* ===== LANDSCAPE MODE ===== */
@@ -463,18 +432,15 @@
     .projects { padding: 60px 5%; }
     .contact { padding: 60px 5%; }
     .footer { margin-top: 30px; }
-    
 }
 
-/* ===== TABLET SAJA (641px - 768px) ===== */
+/* ===== TABLET SAJA ===== */
 @media (min-width: 641px) and (max-width: 768px) {
     .hero-title { font-size: 2.2rem; }
     .about-title { font-size: 2rem; }
     .skills-title { font-size: 2rem; }
     .projects-title { font-size: 2rem; }
     .contact-title { font-size: 2rem; }
-    
-    .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ===== ACHIEVEMENTS GRID RESPONSIVE ===== */
